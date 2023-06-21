@@ -4,7 +4,6 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import { Section, Container, Box, RegistrationImageContainer, FormBody, RegisterButton } from "./Login.styled";
-import collaborateLogin from "@/public/assets/collaborateLogin.png";
 
 const Login = () => {
     const { login } = useContext(AuthContext);
@@ -41,7 +40,7 @@ const Login = () => {
       <Container>
         <Box>
           <RegistrationImageContainer>
-            <img src={collaborateLogin} alt="People working together visual" />
+            <img src="/collaborateLogin.png" alt="People working together visual" />
           </ RegistrationImageContainer>
 
           <FormBody onSubmit={handleSubmit}>

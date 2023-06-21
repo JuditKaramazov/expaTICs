@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Arrow from "@/public/assets/Arrow.svg"
+import Arrow from "@/public/Arrow.svg"
 
 export const Container = styled.div`
   width: 25vw;

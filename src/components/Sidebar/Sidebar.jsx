@@ -4,13 +4,6 @@ import styled from "styled-components";
 import AmbientSounds from "../AmbientSounds/AmbientSounds";
 import { Modal } from "../Modal/Modal";
 
-import Home from "@/public/assets/home-solid.svg";
-import Community from "@/public/assets/social.svg";
-import Solidarity from "@/public/assets/solidarity.svg";
-import Support from "@/public/assets/support.svg";
-import Privacy from "@/public/assets/privacy.svg";
-import Pause from "@/public/assets/pauseButton.svg";
-
 const Container = styled.div`
   position: fixed;
   background-color: transparent;
@@ -223,18 +216,18 @@ const PauseButton = styled.button`
 `;
 
 const Sidebar = () => {
-  // State variables
+  // State variables.
   const [click, setClick] = useState(false);
   const [profileClick, setprofileClick] = useState(false);
   const [showAmbientSounds, setShowAmbientSounds] = useState(false);
-  const [showModal, setShowModal] = useState(false); // New state for the modal
+  const [showModal, setShowModal] = useState(false); // New state for the modal.
 
-  // Toggles click state
+  // Toggles click state.
   const handleClick = () => setClick(!click);
   const handleProfileClick = () => setprofileClick(!profileClick);
   const handleAmbientSoundsClick = () => {
     setShowAmbientSounds(!showAmbientSounds);
-    setShowModal(true); // Opens the modal when clicking the PauseButton
+    setShowModal(true); 
   };
 
   return (
@@ -255,7 +248,7 @@ const Sidebar = () => {
             activeClassName="active"
             to="/dashboard/menu"
           >
-            <img src={Home} alt="Menu" />
+            <img src="/home-solid.svg" alt="Menu" />
             <Text clicked={click}>Menu</Text>
           </ Item>
           <Item
@@ -263,7 +256,7 @@ const Sidebar = () => {
             activeClassName="active"
             to="/dashboard/community"
           >
-            <img src={Community} alt="Community" />
+            <img src="/social.svg" alt="Community" />
             <Text clicked={click}>Community</Text>
           </ Item>
           <Item
@@ -271,7 +264,7 @@ const Sidebar = () => {
             activeClassName="active"
             to="/dashboard/solidarity"
           >
-            <img src={Solidarity} alt="Solidarity" />
+            <img src="/solidarity.svg" alt="Solidarity" />
             <Text clicked={click}>Solidarity</Text>
           </ Item>
           <Item
@@ -279,7 +272,7 @@ const Sidebar = () => {
             activeClassName="active"
             to="/dashboard/support"
           >
-            <img src={Support} alt="Support" />
+            <img src="/support.svg" alt="Support" />
             <Text clicked={click}>Support</Text>
           </ Item>
           <Item
@@ -287,7 +280,7 @@ const Sidebar = () => {
             activeClassName="active"
             to="/dashboard/privacy"
           >
-            <img src={Privacy} alt="Privacy" />
+            <img src="/privacy.svg" alt="Privacy" />
             <Text clicked={click}>Privacy</ Text>
           </ Item>
         </ SlickBar>
@@ -305,7 +298,7 @@ const Sidebar = () => {
             </ Name>
 
             <PauseButton onClick={handleAmbientSoundsClick}>
-              <img src={Pause} alt="Pause visual." />
+              <img src="/pauseButton.svg" alt="Pause visual." />
             </ PauseButton>
           </ Details>
         </ Profile>

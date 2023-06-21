@@ -3,7 +3,6 @@ import Calendar from 'react-calendar';
 import "react-calendar/dist/Calendar.css";
 import styled from "styled-components";
 import ColorTracker from "../../../components/ColorTracker/ColorTracker";
-import MenuImage from "@/public/assets/mentalAwareness.png";
 
 export const Section = styled.section`
   min-height: ${(props) => `calc(100vh - ${props.theme.navHeight})`};
@@ -104,7 +103,7 @@ export const ImageBox = styled.div`
   -webkit-box-pack: center;
   justify-content: flex-start;
   padding: 10rem 20rem;
-  background-image: url(${MenuImage});
+  background-image: url("/mentalAwareness.png");
   background-size: contain;
   background-repeat: no-repeat;
   border: 1px solid transparent;

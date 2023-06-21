@@ -1,12 +1,11 @@
 import React  from "react";
 import styled from "styled-components";
-import vectorImage from "@/public/assets/vectorImage.png";
 
 const Section = styled.section`
   min-height: ${(props) => `calc(100vh - ${props.theme.navHeight})`};
   width: 90%;
   position: absolute;
-  background-image: url(${vectorImage});
+  background-image: url("/vectorImage.png");
   background-repeat: no-repeat;
   background-position: center;
   animation: smoothStart 2s ease-in;

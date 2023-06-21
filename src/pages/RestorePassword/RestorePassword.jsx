@@ -4,7 +4,6 @@ import React, { useContext, useRef } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
 import { Section, Container, Box, RegistrationImageContainer, FormBody, RegisterButton } from "./RestorePassword.styled";
-import forgotPassword from "@/public/assets/forgotPassword.png";
 
 const RestorePassword = () => {
   const emailRef = useRef();
@@ -29,7 +28,7 @@ const RestorePassword = () => {
       <Container>
         <Box>
           <RegistrationImageContainer>
-            <img src={forgotPassword} alt="Colorful question marks visual." />
+            <img src="/forgotPassword.png" alt="Colorful question marks visual." />
           </ RegistrationImageContainer>
 
           <FormBody onSubmit={handleSubmit}>

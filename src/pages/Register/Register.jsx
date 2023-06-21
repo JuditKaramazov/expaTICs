@@ -4,7 +4,6 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import { Section, Container, Box, RegistrationImageContainer, FormBody, RegisterButton } from "./Register.styled";
-import connectRegister from "@/public/assets/connectRegister.png";
 
 const Register = () => {
     const { signUp } = useContext(AuthContext);
@@ -41,7 +40,7 @@ const Register = () => {
         <Container>
           <Box>
             <RegistrationImageContainer>
-              <img src={connectRegister} alt="Colorful jigsaw visual." />
+              <img src="/connectRegister.png" alt="Colorful jigsaw visual." />
             </ RegistrationImageContainer>
   
             <FormBody onSubmit={handleSubmit}>

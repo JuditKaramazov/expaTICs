@@ -15,10 +15,10 @@ const PrivateRoute = ({ children }) => {
       <ThemeProvider theme={dark}>
         <SecondaryNavigation />
         {children}
-      </ThemeProvider>
+      </ ThemeProvider>
     </>
   ) : (
-    <Navigate to="/login/" />
+    <Navigate to="/login/" replace />
   );
 };
 

@@ -6,9 +6,6 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation, Autoplay, EffectCards } from "swiper";
 import { Container, SubText } from "./Carousel.styled";
-import discover from "@/public/assets/discover.png";
-import community from "@/public/assets/community.png";
-import bureaucratic from "@/public/assets/bureaucratic.png";
 
 const backgroundColors = ["#29abe1", "salmon", "orange"];
 
@@ -41,13 +38,13 @@ const Carousel = ({ onSlideChange, subTexts }) => {
         onSlideChange={handleSlideChange}
       >
         <SwiperSlide style={{ backgroundColor: backgroundColors[0] }}>
-          <img src={discover} alt="Man discovering a landscape." />
+          <img src="/discover.png" alt="Man discovering a landscape." />
         </ SwiperSlide>
         <SwiperSlide style={{ backgroundColor: backgroundColors[1] }}>
-          <img src={community} alt="Hands together visual." />
+          <img src="/community.png" alt="Hands together visual." />
         </ SwiperSlide>
         <SwiperSlide style={{ backgroundColor: backgroundColors[2] }}>
-          <img src={bureaucratic} alt="Light bulb visual." />
+          <img src="/bureaucratic.png" alt="Light bulb visual." />
         </ SwiperSlide>
       </ Swiper>
       <SubText>{subTexts[activeIndex]}</ SubText>

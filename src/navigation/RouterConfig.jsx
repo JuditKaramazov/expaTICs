@@ -1,5 +1,3 @@
-'use client'
-
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
@@ -16,12 +14,11 @@ import RestorePassword from "../pages/RestorePassword/RestorePassword";
 // Private routes.
 import Dashboard from "../pages/Dashboard/Dashboard";
 
-const Router = () => (
+const RouterConfig = () => (
   <AuthProvider>
     <BrowserRouter>
       <Routes>
-        <Route index element={<Main />} />
-        <Route path="/main/" element={<Main />} />
+        <Route path="/" element={<Main />} />
         <Route
           path="/login/"
           element={
@@ -46,11 +43,17 @@ const Router = () => (
             </ PrivateLayout>
           }
         />
-        {/* Aquí podría ir algo tipo error, por si las moscas. */}
-        <Route path="/dashboard/*" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+        <Route
+          path="/dashboard/*"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </ PrivateRoute>
+          }
+        />
       </ Routes>
     </ BrowserRouter>
   </ AuthProvider>
 );
 
-export default Router;
+export default RouterConfig;
