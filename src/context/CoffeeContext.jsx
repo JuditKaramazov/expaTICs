@@ -1,35 +1,18 @@
-import React, { createContext, useState, useContext, useEffect } from "react";
-import { MongoClient } from "mongodb";
-import sendEmail from "../utils/sendEmail";
+import React, { createContext, useState, useContext } from "react";
+import { collection, addDoc, getDocs } from "firebase/firestore";
+import { db } from "../config/firebase";
+import { transporter, mailOptions } from "../config/nodemailer";
+import { AuthContext } from "./AuthContext";
 
 export const CoffeeContext = createContext();
 
 export function CoffeeContextProvider(props) {
   const { currentUser } = useContext(AuthContext);
 
+  const coffeeGiftsCollection = collection(db, "coffeeGifts");
   const [selectedCoffeeType, setSelectedCoffeeType] = useState("");
   const [selectedMessageTemplate, setSelectedMessageTemplate] = useState("");
   const [hostCountry, setHostCountry] = useState("");
-
-  // MongoDB connection.
-  require('dotenv').config();
-  const mongoURI = process.env.MONGODB_URI;
-  const dbName = "coffee-gifts";
-  const mongoClient = new MongoClient(mongoURI);
-
-  useEffect(() => {
-    mongoClient.connect((err) => {
-      if (err) {
-        console.error("Failed to connect to MongoDB:", err);
-      } else {
-        console.log("Connected to MongoDB");
-      }
-    });
-
-    return () => {
-      mongoClient.close();
-    };
-  }, []);
 
   const getRandomRecipient = async () => {
     if (currentUser) {
@@ -40,21 +23,18 @@ export function CoffeeContextProvider(props) {
       // Filters out the current user from the list of users.
       const filteredUsers = users.filter((user) => user.email !== currentUser.email);
   
-      // Determines the index of the next recipient based on the number of sent gifts.
-      const coffeeGiftsCollection = mongoClient.db(dbName).collection("gifts");
-      const sentGiftsCount = await coffeeGiftsCollection.countDocuments();
-      const nextRecipientIndex = sentGiftsCount % filteredUsers.length;
+      // Selects a random recipient.
+      const randomIndex = Math.floor(Math.random() * filteredUsers.length);
+      const randomRecipient = filteredUsers[randomIndex];
   
-      // Selects the recipient based on the calculated index.
-      const nextRecipient = filteredUsers[nextRecipientIndex];
-  
-      if (nextRecipient) {
-        return nextRecipient.email;
+      if (randomRecipient) {
+        return randomRecipient.email;
       }
     }
     return null;
   };
-
+  
+  
   const sendCoffeeGift = async () => {
     const randomRecipient = await getRandomRecipient();
   
@@ -66,25 +46,28 @@ export function CoffeeContextProvider(props) {
           hostCountry: hostCountry,
           senderId: currentUser.uid,
           recipientId: randomRecipient,
-          createdAt: serverTimestamp(),
+          createdAt: new Date(),
         };
   
-        // Creates a new coffee gift document in the "coffeeGifts" collection in MongoDB.
-        const coffeeGiftsCollection = mongoClient.db(dbName).collection("gifts");
-        const insertedGift = await coffeeGiftsCollection.insertOne(coffeeGiftData);
+        // Creates a new coffee gift document in the "coffeeGifts" collection in Firestore.
+        const docRef = await addDoc(coffeeGiftsCollection, coffeeGiftData);
+        console.log("Coffee gift sent with ID: ", docRef.id);
   
-        console.log("Coffee gift sent to MongoDB with ID: ", insertedGift.insertedId);
-
-        // Sends an email to the recipient by using SendGrid.
+        // Sends an email to the recipient using nodemailer.
         const emailData = {
+          ...mailOptions,
           to: randomRecipient,
           subject: "You've received a coffee gift!",
-          body: `You've received a coffee gift of type ${selectedCoffeeType} with the message: "${selectedMessageTemplate}"`,
+          text: `You've received a coffee gift of type ${selectedCoffeeType} with the message: "${selectedMessageTemplate}"`,
         };
-        await sendEmail(emailData);
-
-        console.log("Email sent to recipient: ", randomRecipient);
-
+        transporter.sendMail(emailData, (error, info) => {
+          if (error) {
+            console.error("Error sending email:", error);
+          } else {
+            console.log("Email sent to recipient:", randomRecipient);
+          }
+        });
+  
         // Resets the form after sending the coffee gift.
         setSelectedCoffeeType("");
         setSelectedMessageTemplate("");
@@ -95,7 +78,7 @@ export function CoffeeContextProvider(props) {
     } else {
       console.error("No random recipient found.");
     }
-  };
+  };  
   
   const contextValue = {
     selectedCoffeeType,
