@@ -1,16 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from "react";
-import {
-  collection,
-  doc,
-  addDoc,
-  getDocs,
-  updateDoc,
-  serverTimestamp,
-  query,
-  where,
-} from "firebase/firestore";
-import { db } from "../config/firebase";
-import { AuthContext } from "./AuthContext";
+import { MongoClient } from "mongodb";
+import sendEmail from "../utils/sendEmail";
 
 export const CoffeeContext = createContext();
 
@@ -20,33 +10,54 @@ export function CoffeeContextProvider(props) {
   const [selectedCoffeeType, setSelectedCoffeeType] = useState("");
   const [selectedMessageTemplate, setSelectedMessageTemplate] = useState("");
   const [hostCountry, setHostCountry] = useState("");
-  const [notifications, setNotifications] = useState([]);
+
+  // MongoDB connection.
+  require('dotenv').config();
+  const mongoURI = process.env.MONGODB_URI;
+  const dbName = "coffee-gifts";
+  const mongoClient = new MongoClient(mongoURI);
+
+  useEffect(() => {
+    mongoClient.connect((err) => {
+      if (err) {
+        console.error("Failed to connect to MongoDB:", err);
+      } else {
+        console.log("Connected to MongoDB");
+      }
+    });
+
+    return () => {
+      mongoClient.close();
+    };
+  }, []);
 
   const getRandomRecipient = async () => {
     if (currentUser) {
       const usersRef = collection(db, "users");
       const querySnapshot = await getDocs(usersRef);
       const users = querySnapshot.docs.map((doc) => doc.data());
-
-      // Filter out the current user from the list of users
+  
+      // Filters out the current user from the list of users.
       const filteredUsers = users.filter((user) => user.email !== currentUser.email);
-
-      // Select a random user from the filtered list
-      const randomIndex = Math.floor(Math.random() * filteredUsers.length);
-      const randomUser = filteredUsers[randomIndex];
-
-      if (randomUser) {
-        return randomUser.email;
+  
+      // Determines the index of the next recipient based on the number of sent gifts.
+      const coffeeGiftsCollection = mongoClient.db(dbName).collection("gifts");
+      const sentGiftsCount = await coffeeGiftsCollection.countDocuments();
+      const nextRecipientIndex = sentGiftsCount % filteredUsers.length;
+  
+      // Selects the recipient based on the calculated index.
+      const nextRecipient = filteredUsers[nextRecipientIndex];
+  
+      if (nextRecipient) {
+        return nextRecipient.email;
       }
     }
-
-    // If no random user is found or the current user is not available, return null
     return null;
   };
 
   const sendCoffeeGift = async () => {
     const randomRecipient = await getRandomRecipient();
-
+  
     if (randomRecipient) {
       try {
         const coffeeGiftData = {
@@ -57,83 +68,35 @@ export function CoffeeContextProvider(props) {
           recipientId: randomRecipient,
           createdAt: serverTimestamp(),
         };
+  
+        // Creates a new coffee gift document in the "coffeeGifts" collection in MongoDB.
+        const coffeeGiftsCollection = mongoClient.db(dbName).collection("gifts");
+        const insertedGift = await coffeeGiftsCollection.insertOne(coffeeGiftData);
+  
+        console.log("Coffee gift sent to MongoDB with ID: ", insertedGift.insertedId);
 
-        // Create a new coffee gift document in the "coffeeGifts" collection with a random ID
-        const docRef = await addDoc(collection(db, "coffeeGifts"), coffeeGiftData);
-
-        console.log("Coffee gift sent with ID: ", docRef.id);
-
-        // Create a notification document for the recipient in the "notifications" collection
-        const notificationData = {
-          coffeeGiftId: docRef.id,
-          recipientId: randomRecipient,
-          senderId: currentUser.uid,
-          read: false,
-          createdAt: serverTimestamp(),
+        // Sends an email to the recipient by using SendGrid.
+        const emailData = {
+          to: randomRecipient,
+          subject: "You've received a coffee gift!",
+          body: `You've received a coffee gift of type ${selectedCoffeeType} with the message: "${selectedMessageTemplate}"`,
         };
-        await addDoc(collection(db, "notifications"), notificationData);
+        await sendEmail(emailData);
 
-        console.log("Notification created for recipient: ", randomRecipient);
+        console.log("Email sent to recipient: ", randomRecipient);
 
-        // Reset the form after sending the coffee gift
+        // Resets the form after sending the coffee gift.
         setSelectedCoffeeType("");
         setSelectedMessageTemplate("");
         setHostCountry("");
       } catch (error) {
         console.error("Error sending coffee gift:", error);
-        // Handle the error appropriately
       }
     } else {
       console.error("No random recipient found.");
-      // Handle the case when no random recipient is available
     }
   };
-
-  const getNotifications = async (userId) => {
-    try {
-      const notificationsRef = collection(db, "notifications");
-      const querySnapshot = await getDocs(query(notificationsRef, where("recipientId", "==", userId)));
-
-      const notifications = [];
-      querySnapshot.forEach((doc) => {
-        const notification = {
-          id: doc.id,
-          ...doc.data(),
-        };
-        notifications.push(notification);
-      });
-
-      setNotifications(notifications);
-    } catch (error) {
-      console.error("Error fetching notifications:", error);
-      // Handle the error appropriately
-    }
-  };
-
-  const markNotificationAsRead = async (notificationId) => {
-    try {
-      const notificationDocRef = doc(db, "notifications", notificationId);
-      await updateDoc(notificationDocRef, {
-        read: true,
-      });
-
-      const updatedNotifications = notifications.map((notification) =>
-        notification.id === notificationId ? { ...notification, read: true } : notification
-      );
-
-      setNotifications(updatedNotifications);
-    } catch (error) {
-      console.error("Error marking notification as read:", error);
-      // Handle the error appropriately
-    }
-  };
-
-  useEffect(() => {
-    if (currentUser) {
-      getNotifications(currentUser.uid);
-    }
-  }, [currentUser]);
-
+  
   const contextValue = {
     selectedCoffeeType,
     setSelectedCoffeeType,
@@ -142,9 +105,6 @@ export function CoffeeContextProvider(props) {
     hostCountry,
     setHostCountry,
     sendCoffeeGift,
-    notifications,
-    markNotificationAsRead,
-    getNotifications,
   };
 
   return (
