@@ -21,13 +21,13 @@ export const Section = styled.section`
     100% {
         opacity: 1;
     }
-}
+  }
 `;
 
 const Introduction = styled.div`
   position: absolute;
-  top: 0%;
-  left: 0%;
+  top: 0;
+  left: 0;
   padding: 1rem;
 
   h2 {
@@ -58,6 +58,11 @@ const Introduction = styled.div`
   p {
     margin-left: 6px;
   }
+
+  @media (max-width: 64em) {
+    display: none;
+  }
+}
 `;
 
 export const Container = styled.div`
@@ -104,20 +109,16 @@ export const Container = styled.div`
   }
 
   @media (max-width: 64em) {
-    width: 95%;
+    position: sticky;
+    margin-left: 1rem;
   }
-  
-  @media (max-width: 48em) {
-    width: 100%;
-    flex-direction: column-reverse;
 
-    & > *:first-child {
-      width: 100%;
-      margin-top: 2rem;
-    }
+  @media (max-width: 48em) {
+    position: absolute;
+    flex-direction: column;
+    width: 100%;
   }
 `;
-
 
 export const FormContainer = styled.form`
   max-width: 708px;
@@ -222,6 +223,14 @@ export const FormContainer = styled.form`
     background: #474544;
     color: #F2F3EB;
   }
+
+  @media (max-width: 64em) {
+    width: 100%;
+  }
+
+  @media (max-width: 48em) {
+    position: sticky;
+  }
 `;
 
 export const Box = styled.div`
@@ -235,13 +244,21 @@ export const Box = styled.div`
     margin-left: -5%;
   }
 
+  @media (max-width: 64em) {
+    width: 80%;
+    display: inline-block;
+    margin: 3rem 2rem 0 1rem;
+    float: left;
+  }
+
   @media (max-width: 48em) {
-    width: 100%;
+    width: 90%;
   }
 `;
 
 export const ArticleBox = styled.div`
   display: flex;
+  width: calc(33.3333% - 40px);
   max-width: 600px;
   min-width: 200px;
   max-height: 400px;
@@ -253,7 +270,6 @@ export const ArticleBox = styled.div`
   box-shadow: 0 0 20px rgba(0,0,0,0.4);
   border-radius: 5px;
   margin: 30px 20px 20px 20px;
-  width: calc(33.3333% - 40px);
   color: white;
   float: left;
 
@@ -270,7 +286,7 @@ export const ArticleBox = styled.div`
     border-radius: 4px;
     transition: all .3s ease;
   }
-  
+
   .content:hover {
     overflow: visible;
     white-space: normal;
@@ -305,11 +321,10 @@ export const ArticleBox = styled.div`
     }
   }
 
-  @media (max-width: 900px) {
-    .articles{
-      display: flex;
-      flex-direction: column;
-    }
+  @media (max-width: 64em) {
+    width: 100%;
+    margin: 20px; 
+    float: none; 
   }
 `;
 
@@ -329,6 +344,11 @@ const NumericPagination = styled.button`
     color: grey;
     cursor: default;
     font-weight: normal;
+  }
+
+  @media (max-width: 64em) {
+    position: sticky;
+    margin-left: 8.5rem;
   }
 `;
 
