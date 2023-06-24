@@ -6,9 +6,9 @@ import ColorTracker from "../../../components/ColorTracker/ColorTracker";
 
 export const Section = styled.section`
   min-height: ${(props) => `calc(100vh - ${props.theme.navHeight})`};
-  width: 90%;
+  width: 95%;
   margin-left: 5rem;
-  position: fixed;
+  position: sticky;
   animation: smoothStart 2s ease-in;
 
   @keyframes smoothStart {
