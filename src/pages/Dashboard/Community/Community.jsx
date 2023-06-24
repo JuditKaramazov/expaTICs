@@ -59,16 +59,18 @@ const Introduction = styled.div`
 `;
 
 export const Container = styled.div`
-  width: 90%;
-  min-height: 80vh;
   display: flex;
-  margin: 0 0 0 25rem;
-  align-items: center;
-  justify-content: center;
+  justify-content: space-between;
+  margin-top: 10rem;
+  margin-left: 5rem;
+
 
   #container {
     border: solid 4px #474544;
     background: #fdfbe8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 
   h3 {
@@ -108,19 +110,22 @@ export const Container = styled.div`
     width: 100%;
     flex-direction: column-reverse;
 
-    &>*: first-child {
+    & > *:first-child {
       width: 100%;
       margin-top: 2rem;
     }
   }
 `;
 
+
 export const FormContainer = styled.form`
-  max-width: 768px;
-  margin: 60px auto;
+  max-width: 608px;
+  width: 50%;
   position: relative;
   padding: 37.5px;
-  margin: 50px 0;
+  margin: 40px 0;
+  justify-content: flex-end;
+  flex: 1;
 
 button, input, select, textarea {
   color: #5A5A5A;
@@ -221,12 +226,103 @@ button:hover {
 `;
 
 export const Box = styled.div`
-  width: 50%;
-  height: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: flex-start;
   align-items: center;
-  justify-content: center;
+  flex: 1;
+
+  .articles-container {
+    max-width: 800px;
+    margin-left: -5%;
+  }
+
+  @media (max-width: 48em) {
+    width: 100%;
+  }
+`;
+
+export const ArticleBox = styled.div`
+display: flex;
+flex-wrap: wrap;
+flex: 1;
+max-width: 300px;
+margin: 30px;
+padding: 20px;
+background: #1F2124;
+box-shadow: 0 0 20px rgba(0,0,0,0.4);
+border-radius: 5px;
+margin: 30px 20px 20px 20px;
+width: calc(33.3333% - 40px);
+text-align: center;
+color: white;
+float: left;
+
+  .articles h2.header {
+    font-size: 20px;
+  margin: 0 0 30px 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  }
+
+  .content {
+    display: flex;
+  flex-wrap: wrap;
+  flex: 1;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 4px;
+  transition: all .3s ease;
+  }
+  .content > *{
+    flex: 1 1 100%;
+  }
+  .content:hover{
+    color: white;
+  }
+  .content:hover a{
+    border-color: white;
+    background: white;
+  }
+  .content-1:hover{
+    border-color: #1DA1F2;
+    background: #1DA1F2;
+  }
+  .content-1:hover a{
+    color: #1DA1F2;
+  }
+
+  .content h2{
+    font-size: 30px;
+    margin: 16px 0;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .content p{
+    font-size: 17px;
+    font-family: 'Poppins',sans-serif;
+  }
+  .content a{
+    margin: 22px 0;
+    background: black;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    border: 1px solid black;
+    padding: 15px 0;
+    border-radius: 25px;
+    transition: .3s ease;
+  }
+  .content a:hover{
+    border-radius: 4px;
+  }
+
+  @media (max-width: 900px) {
+    .articles{
+      display: flex;
+      flex-direction: column;
+    }
+  }
 `;
 
 
@@ -254,6 +350,30 @@ const Community = () => {
         <p>enjoyed? Here's your Agora!</p>
       </ Introduction>
       <Container>
+      <Box>
+          <div className="articles-container">
+            {articles.map((article, index) => (
+              <ArticleBox key={index}>
+                <div className="articles">
+                <h2 className="header">{article.title}</h2>
+                <p className="content content-1">{article.content}</p>
+                {editingIndex === index ? (
+                  <>
+                    <button onClick={() => handleEdit(-1)}>Cancel</button>
+                    <button onClick={handleUpdate}>Save</button>
+                  </>
+                ) : (
+                  <>
+                    <button onClick={() => handleEdit(index)}>Edit</button>
+                    <button onClick={() => handleDelete(index)}>Delete</button>
+                  </>
+                )}
+                </div>
+              </ ArticleBox>
+            ))}
+          </div>
+        </ Box>
+      <Box>
         <div id="container">
           <h3>&bull; Share your knowledge &bull;</h3>
           <div className="underline"></div>
@@ -283,29 +403,12 @@ const Community = () => {
             <button onClick={handleUpdate}>Update Article</button>
           )}
         </ FormContainer>
-        </div>
+        </ div>
+        </ Box>
       </ Container>
-      <Box>
-        {articles.map((article, index) => (
-          <div key={index}>
-            <h2>{article.title}</h2>
-            <p>{article.content}</p>
-            {editingIndex === index ? (
-              <>
-                <button onClick={() => handleEdit(-1)}>Cancel</button>
-                <button onClick={handleUpdate}>Save</button>
-              </>
-            ) : (
-              <>
-                <button onClick={() => handleEdit(index)}>Edit</button>
-                <button onClick={() => handleDelete(index)}>Delete</button>
-              </>
-            )}
-          </div>
-        ))}
-      </ Box>
     </ Section>
   );
 };
 
 export default Community;
+
