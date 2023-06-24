@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { AddIdeaForm } from '@/src/components/SolidaryForm/SolidaryForm';
 import { SolidaryIdea } from '@/src/components/SolidaryIdea/SolidaryIdea';
 import { generateId, getNewExpirationTime } from '@/src/utils/expirationTime';
+import { Modal } from '@/src/components/Modal/Modal';
+import CoffeeGift from '@/src/components/CoffeeGift/CoffeeGift';
 import styled from 'styled-components';
 
 const FormContainer = styled.div`
@@ -54,6 +56,8 @@ margin: 0 auto;
 
 
 function Solidarity()  {
+  const [removedCount, setRemovedCount] = useState(0);
+  const [showModal, setShowModal] = useState(false);
   const [ideas, setIdeas] = useState([
     {
       id: generateId(),
@@ -72,8 +76,21 @@ function Solidarity()  {
   };
 
   const removeIdea = (ideaId) => {
-    setIdeas((prev) => prev.filter(item => item.id !== ideaId));
+    setIdeas((prev) => prev.filter((item) => item.id !== ideaId));
+    setRemovedCount((prevCount) => prevCount + 1);
   };
+
+  useEffect(() => {
+    if (removedCount === 4) {
+      setShowModal(true);
+    }
+  }, [removedCount]);
+
+  useEffect(() => {
+    if (!showModal) {
+      setRemovedCount(0);
+    }
+  }, [showModal]);
 
   return (
     <div>
@@ -86,6 +103,9 @@ function Solidarity()  {
           ))}
         </ul>
       </ FormContainer>
+      <Modal showModal={showModal} setShowModal={setShowModal}>
+        <CoffeeGift />
+      </ Modal>
     </div>
   );
 };
