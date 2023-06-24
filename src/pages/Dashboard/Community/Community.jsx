@@ -332,7 +332,6 @@ const NumericPagination = styled.button`
   }
 `;
 
-
 const Community = () => {
   const {
     articles,

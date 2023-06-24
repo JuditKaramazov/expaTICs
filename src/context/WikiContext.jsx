@@ -23,12 +23,11 @@ export function WikiContextProvider(props) {
         setArticles(articlesData);
       } catch (error) {
         console.error("Error fetching articles:", error);
-        // Handle the error appropriately
       }
     };
 
     fetchArticles();
-  }, [editingIndex]); // Add 'editingIndex' as a dependency
+  }, [editingIndex]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,7 +38,7 @@ export function WikiContextProvider(props) {
         content: content,
         createdAt: new Date(),
         updatedAt: new Date(),
-        tags: ["historic", "restaurant", "cafe", "library", "party"],
+        // Future implementation: add tags.
       });
   
       console.log("Document written with ID: ", docRef.id);
@@ -47,7 +46,7 @@ export function WikiContextProvider(props) {
       setTitle("");
       setContent("");
   
-      // Update articles state immediately after creating a new article
+      // Updates articles state after creating a new article.
       setArticles((prevArticles) => [
         ...prevArticles,
         {
@@ -58,7 +57,6 @@ export function WikiContextProvider(props) {
       ]);
     } catch (error) {
       console.error("Error creating document:", error);
-      // Handle the error appropriately
     }
   };
 
@@ -88,7 +86,6 @@ export function WikiContextProvider(props) {
       setContent("");
     } catch (error) {
       console.error("Error updating document:", error);
-      // Handle the error appropriately
     }
   };
 
@@ -98,13 +95,12 @@ export function WikiContextProvider(props) {
       const articleRef = doc(db, "locations", articleToDelete.id);
       await deleteDoc(articleRef);
   
-      // Update articles state immediately after deleting an article
+      // Updates articles state immediately after deleting an article.
       setArticles((prevArticles) =>
         prevArticles.filter((_, i) => i !== index)
       );
     } catch (error) {
       console.error("Error deleting document:", error);
-      // Handle the error appropriately
     }
   };
 
