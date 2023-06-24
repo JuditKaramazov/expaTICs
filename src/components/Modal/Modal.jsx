@@ -50,6 +50,21 @@ export const ModalMessage = styled.div`
     }
   }
 
+  h2 {
+    margin: 10px;
+    font-size: 1.3rem;
+  }
+
+  h3 {
+    margin: 15px;
+    font-size: 1.7rem;
+
+    &:hover {
+      font-size: 1.8rem;
+      text-decoration: underline;
+    }
+  }
+
   .sound-list {
     margin: 5px;
     font-size: 18px;

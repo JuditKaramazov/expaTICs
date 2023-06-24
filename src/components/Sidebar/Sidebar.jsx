@@ -220,7 +220,7 @@ const Sidebar = () => {
   const [click, setClick] = useState(false);
   const [profileClick, setprofileClick] = useState(false);
   const [showAmbientSounds, setShowAmbientSounds] = useState(false);
-  const [showModal, setShowModal] = useState(false); // New state for the modal.
+  const [showModal, setShowModal] = useState(false);
 
   // Toggles click state.
   const handleClick = () => setClick(!click);
