@@ -12,7 +12,6 @@ import Support from "./Support/Support";
 import Privacy from "./Privacy/Privacy";
 import { AuthProvider } from "../../context/AuthContext";
 import { WikiContextProvider } from "../../context/WikiContext";
-import { CoffeeContextProvider } from "../../context/CoffeeContext";
 
 const Pages = styled(motion.div)`
   width: 100vw;
@@ -44,7 +43,6 @@ function Dashboard() {
         <AnimatePresence mode="wait" initial={false}>
           <AuthProvider>
             <WikiContextProvider>
-              <CoffeeContextProvider>
                 <Routes location={location}>
                   <Route path="/menu" element={<Menu />} />
                   <Route path="/community" element={<Community />} />
@@ -58,7 +56,6 @@ function Dashboard() {
                     }
                   />
                 </ Routes>
-              </ CoffeeContextProvider>
             </ WikiContextProvider>
           </ AuthProvider>
         </ AnimatePresence>
