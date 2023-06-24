@@ -1,73 +1,91 @@
-import React, { useContext } from "react";
-import { CoffeeContext } from "../../../context/CoffeeContext";
-import { coffeeTypes, messageTemplates } from "../../../utils/coffeeData";
+import React, { useState } from 'react';
+import { AddIdeaForm } from '@/src/components/SolidaryForm/SolidaryForm';
+import { SolidaryIdea } from '@/src/components/SolidaryIdea/SolidaryIdea';
+import { generateId, getNewExpirationTime } from '@/src/utils/expirationTime';
+import styled from 'styled-components';
 
-const Solidarity = () => {
-  const {
-    selectedCoffeeType,
-    setSelectedCoffeeType,
-    selectedMessageTemplate,
-    setSelectedMessageTemplate,
-    hostCountry,
-    setHostCountry,
-    sendCoffeeGift,
-  } = useContext(CoffeeContext);
+const FormContainer = styled.div`
+margin: 0 auto;
+  max-width: 600px;
+  width: 100%;
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  .AddIdeaForm {
+    display: flex;
+    flex-wrap: wrap;
+  }
 
-    await sendCoffeeGift();
+  .AddIdeaForm input {
+    padding: 1.5rem;
+    border: 1px solid #666;
+    border-radius: 4px;
+  }
+  
+  .AddIdea input[type='text'] {
+    flex-grow: 1;
+    margin-right: 0.5rem;
+  }
 
-    setSelectedCoffeeType("");
-    setSelectedMessageTemplate("");
-    setHostCountry("");
+  .ideas {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .Idea {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 3px;
+    background-color: #eee;
+  }
+  
+  .Idea .remove-button {
+    font-size: 80%;
+    float: right;
+    border: 0;
+    border-radius: 3px;
+    background: transparent;
+  }
+  
+  .Idea .remove-button:hover {
+    color: #fff;
+    background-color: #000;
+  }
+
+`;
+
+
+function Solidarity()  {
+  const [ideas, setIdeas] = useState([
+    {
+      id: generateId(),
+      text: 'This is a place for your passing thoughts.',
+      expiresAt: getNewExpirationTime(),
+    },
+    {
+      id: generateId(),
+      text: "They'll be removed after 15 seconds.",
+      expiresAt: getNewExpirationTime(),
+    },
+  ]);
+
+  const addIdea = (idea) => {
+    setIdeas(prev => [idea, ...prev]);
+  };
+
+  const removeIdea = (ideaId) => {
+    setIdeas((prev) => prev.filter(item => item.id !== ideaId));
   };
 
   return (
     <div>
       <h1>Solidarity</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Select Coffee Type:
-          <select
-            value={selectedCoffeeType}
-            onChange={(e) => setSelectedCoffeeType(e.target.value)}
-          >
-            <option value="">Select Coffee Type</option>
-            {coffeeTypes.map((coffeeType) => (
-              <option key={coffeeType} value={coffeeType}>
-                {coffeeType}
-              </option>
-            ))}
-          </select>
-        </label>
-        <br />
-        <label>
-          Select Message Template:
-          <select
-            value={selectedMessageTemplate}
-            onChange={(e) => setSelectedMessageTemplate(e.target.value)}
-          >
-            <option value="">Select Message Template</option>
-            {messageTemplates.map((template) => (
-              <option key={template} value={template}>
-                {template}
-              </option>
-            ))}
-          </select>
-        </label>
-        <br />
-        <label>
-          Host Country (Optional):
-          <input
-            type="text"
-            value={hostCountry}
-            onChange={(e) => setHostCountry(e.target.value)}
-          />
-        </label>
-        <br />
-        <button type="submit">Send Coffee Gift</button>
-      </form>
+      <FormContainer>
+        <AddIdeaForm addIdea={addIdea} />
+        <ul className="ideas">
+          {ideas.map((idea) => (
+            <SolidaryIdea key={idea.id} idea={idea} removeIdea={removeIdea} />
+          ))}
+        </ul>
+      </ FormContainer>
     </div>
   );
 };
