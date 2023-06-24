@@ -1,4 +1,5 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+import { FaPencilAlt, FaTrash, FaPlus, FaMinus } from "react-icons/fa"
 import styled from "styled-components";
 import { WikiContext } from "../../../context/WikiContext";
 
@@ -229,7 +230,6 @@ export const Box = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  align-items: center;
   flex: 1;
 
   .articles-container {
@@ -244,77 +244,66 @@ export const Box = styled.div`
 
 export const ArticleBox = styled.div`
 display: flex;
-flex-wrap: wrap;
-flex: 1;
-max-width: 300px;
+max-width: 600px;
+max-height: 400px;
 margin: 30px;
 padding: 20px;
+justify-content: center;
+text-align: center;
 background: #1F2124;
 box-shadow: 0 0 20px rgba(0,0,0,0.4);
 border-radius: 5px;
 margin: 30px 20px 20px 20px;
 width: calc(33.3333% - 40px);
-text-align: center;
 color: white;
 float: left;
 
   .articles h2.header {
-    font-size: 20px;
-  margin: 0 0 30px 0;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  }
-
-  .content {
-    display: flex;
-  flex-wrap: wrap;
-  flex: 1;
-  margin: 20px;
-  padding: 20px;
-  border-radius: 4px;
-  transition: all .3s ease;
-  }
-  .content > *{
-    flex: 1 1 100%;
-  }
-  .content:hover{
-    color: white;
-  }
-  .content:hover a{
-    border-color: white;
-    background: white;
-  }
-  .content-1:hover{
-    border-color: #1DA1F2;
-    background: #1DA1F2;
-  }
-  .content-1:hover a{
-    color: #1DA1F2;
-  }
-
-  .content h2{
-    font-size: 30px;
-    margin: 16px 0;
+    font-size: 15px;
     letter-spacing: 1px;
     text-transform: uppercase;
   }
-  .content p{
-    font-size: 17px;
-    font-family: 'Poppins',sans-serif;
-  }
-  .content a{
-    margin: 22px 0;
-    background: black;
-    color: white;
-    text-decoration: none;
-    text-transform: uppercase;
-    border: 1px solid black;
-    padding: 15px 0;
-    border-radius: 25px;
-    transition: .3s ease;
-  }
-  .content a:hover{
+
+  .content {
+    max-width: 170px;
+    margin: 30px;
+    padding: 15px;
     border-radius: 4px;
+    transition: all .3s ease;
+  }
+  
+  .content:hover {
+    overflow: visible;
+    white-space: normal;
+  }
+
+  .content content-1 {
+    margin: 0 auto;
+    border-radius: 4px;
+    transition: all .3s ease;
+  }
+
+  .content-1:hover{
+    color: black;
+    border: 1px solid salmon;
+    background: #fdfbe8;
+  }
+
+  .icon-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .icon {
+    width: 20px;
+    height: 20px;
+    margin: 7px;
+    fill: white;
+
+    &:hover {
+      fill: salmon;
+    }
   }
 
   @media (max-width: 900px) {
@@ -339,6 +328,35 @@ const Community = () => {
     handleDelete,
     editingIndex,
   } = useContext(WikiContext);
+  
+  const [showFullContent, setShowFullContent] = useState(false);
+  const toggleFullContent = () => {
+    setShowFullContent(!showFullContent);
+  };
+
+  const EditButton = ({ onClick }) => (
+    <button onClick={onClick} className="icon-button">
+      <FaPencilAlt className="icon" />
+    </button>
+  );
+  
+  const DeleteButton = ({ onClick }) => (
+    <button onClick={onClick} className="icon-button">
+      <FaTrash className="icon" />
+    </button>
+  );
+
+  const ShowMoreButton = ({ onClick }) => (
+    <button onClick={onClick} className="icon-button">
+      <FaPlus className="icon" />
+    </button>
+  );
+  
+  const ShowLessButton = ({ onClick }) => (
+    <button onClick={onClick} className="icon-button">
+      <FaMinus className="icon" />
+    </button>
+  );
 
   return (
     <Section>
@@ -354,22 +372,35 @@ const Community = () => {
           <div className="articles-container">
             {articles.map((article, index) => (
               <ArticleBox key={index}>
-                <div className="articles">
+              <div className="articles">
                 <h2 className="header">{article.title}</h2>
-                <p className="content content-1">{article.content}</p>
-                {editingIndex === index ? (
-                  <>
-                    <button onClick={() => handleEdit(-1)}>Cancel</button>
-                    <button onClick={handleUpdate}>Save</button>
-                  </>
+                {showFullContent ? (
+                  <p className="content">{article.content}</p>
                 ) : (
-                  <>
-                    <button onClick={() => handleEdit(index)}>Edit</button>
-                    <button onClick={() => handleDelete(index)}>Delete</button>
-                  </>
+                  <p className="content content-1">
+                    {article.content.length > 10
+                      ? article.content.substring(0, 10) + "..."
+                      : article.content}
+                  </p>
                 )}
+                {editingIndex === index ? (
+                    <>
+                      <button onClick={() => handleEdit(-1)}>Cancel</button>
+                      <button onClick={handleUpdate}>Save</button>
+                    </>
+                  ) : (
+                    <>
+                      <EditButton onClick={() => handleEdit(index)} />
+                      <DeleteButton onClick={() => handleDelete(index)} />
+                    </>
+                  )}
+                  {showFullContent ? (
+                    <ShowLessButton onClick={toggleFullContent} />
+                  ) : (
+                    <ShowMoreButton onClick={toggleFullContent} />
+                  )}
                 </div>
-              </ ArticleBox>
+              </ ArticleBox>          
             ))}
           </div>
         </ Box>
