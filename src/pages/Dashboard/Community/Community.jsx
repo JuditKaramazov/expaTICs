@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { FaPencilAlt, FaTrash, FaPlus, FaMinus } from "react-icons/fa"
+import { FaPencilAlt, FaTrash, FaPlus, FaMinus, FaTimes, FaSave } from "react-icons/fa"
 import styled from "styled-components";
 import { WikiContext } from "../../../context/WikiContext";
 
@@ -7,7 +7,7 @@ export const Section = styled.section`
   min-height: ${(props) => `calc(100vh - ${props.theme.navHeight})`};
   width: 95%;
   margin-left: 5rem;
-  position: fixed;
+  position: sticky;
   animation: smoothStart 2s ease-in;
 
   @keyframes smoothStart {
@@ -120,11 +120,11 @@ export const Container = styled.div`
 
 
 export const FormContainer = styled.form`
-  max-width: 608px;
+  max-width: 708px;
   width: 50%;
   position: relative;
-  padding: 37.5px;
-  margin: 40px 0;
+  padding: 35.5px;
+  margin: 20px 0;
   justify-content: flex-end;
   flex: 1;
 
@@ -245,6 +245,7 @@ export const Box = styled.div`
 export const ArticleBox = styled.div`
 display: flex;
 max-width: 600px;
+min-width: 200px;
 max-height: 400px;
 margin: 30px;
 padding: 20px;
@@ -312,6 +313,26 @@ float: left;
       flex-direction: column;
     }
   }
+
+`;
+
+const NumericPagination = styled.button`
+  margin: 30px;
+  color: black;
+  cursor: pointer;
+  background: transparent;
+  border: none; 
+  padding: 5px;
+
+  &:hover {
+    font-weight: bold;
+  }
+
+  &:disabled {
+    color: grey;
+    cursor: default;
+    font-weight: normal;
+  }
 `;
 
 
@@ -358,6 +379,44 @@ const Community = () => {
     </button>
   );
 
+  const CancelButton = ({ onClick }) => (
+    <button onClick={onClick} className="icon-button">
+      <FaTimes className="icon" />
+    </button>
+  );
+  
+  const SaveButton = ({ onClick }) => (
+    <button onClick={onClick} className="icon-button">
+      <FaSave className="icon" />
+    </button>
+  );
+  
+  // Adds pagination system.
+  const [currentPage, setCurrentPage] = useState(1);
+  const articlesPerPage = 4;
+
+  const indexOfLastArticle = currentPage * articlesPerPage;
+  const indexOfFirstArticle = indexOfLastArticle - articlesPerPage;
+  const displayedArticles = articles.slice(indexOfFirstArticle, indexOfLastArticle);
+
+  const totalPages = Math.ceil(articles.length / articlesPerPage);
+
+  const changePage = (page) => {
+    setCurrentPage(page);
+  };
+
+  const goToPreviousPage = () => {
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+
+  const goToNextPage = () => {
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+
   return (
     <Section>
       <Introduction>
@@ -370,7 +429,7 @@ const Community = () => {
       <Container>
       <Box>
           <div className="articles-container">
-            {articles.map((article, index) => (
+            {displayedArticles.map((article, index) => (
               <ArticleBox key={index}>
               <div className="articles">
                 <h2 className="header">{article.title}</h2>
@@ -385,8 +444,8 @@ const Community = () => {
                 )}
                 {editingIndex === index ? (
                     <>
-                      <button onClick={() => handleEdit(-1)}>Cancel</button>
-                      <button onClick={handleUpdate}>Save</button>
+                      <CancelButton onClick={() => handleEdit(-1)} />
+                      <SaveButton onClick={handleUpdate} />
                     </>
                   ) : (
                     <>
@@ -434,9 +493,30 @@ const Community = () => {
             <button onClick={handleUpdate}>Update Article</button>
           )}
         </ FormContainer>
-        </ div>
+        </div>
         </ Box>
       </ Container>
+      <NumericPagination
+        onClick={goToPreviousPage}
+        disabled={currentPage === 1}
+      >
+        &lt;
+      </ NumericPagination>
+      {Array.from({ length: totalPages }, (_, index) => (
+        <NumericPagination
+          key={index}
+          onClick={() => changePage(index + 1)}
+          disabled={currentPage === index + 1}
+        >
+          {index + 1}
+        </ NumericPagination>
+      ))}
+      <NumericPagination
+        onClick={goToNextPage}
+        disabled={currentPage === totalPages}
+      >
+        &gt;
+      </ NumericPagination>
     </ Section>
   );
 };
