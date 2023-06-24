@@ -8,7 +8,8 @@ export const Section = styled.section`
   min-height: ${(props) => `calc(100vh - ${props.theme.navHeight})`};
   width: 95%;
   margin-left: 5rem;
-  position: sticky;
+  margin-right: 1rem;
+  position: relative;
   animation: smoothStart 2s ease-in;
 
   @keyframes smoothStart {
@@ -21,7 +22,13 @@ export const Section = styled.section`
     100% {
         opacity: 1;
     }
-}
+  }
+
+  @media (max-width: 30em) {
+    width: 95%;
+    margin: 0 30px 0 30px;
+    font-size: ${(props) => props.theme.fontsm};
+  }
 `;
 
 const Introduction = styled.div`
@@ -58,6 +65,12 @@ const Introduction = styled.div`
   p {
     margin-left: 6px;
   }
+
+  @media (max-width: 30em) {
+    width: 90%;
+    margin-left: 50px;
+    font-size: ${(props) => props.theme.fontsm};
+  }
 `;
 
 export const Container = styled.div`
@@ -69,17 +82,17 @@ export const Container = styled.div`
   justify-content: center;
 
   @media (max-width: 64em) {
-    width: 85%;
+    width: 25%;
+    margin-top: 5rem;
   }
   
   @media (max-width: 48em) {
-    flex-direction: column-reverse;
-    width: 100%;
+    width: 10%;
+    margin-right: 2rem;
+  }
 
-    &>*: first-child {
-      width: 100%;
-      margin-top: 2rem;
-    }
+  @media (max-width: 30em) {
+    width: 0%;
   }
 `;
 
@@ -90,19 +103,29 @@ export const Box = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 64em) {
+    float: left;
+  }
+
+  @media (max-width: 48em) {
+    width: 100%;
+  }
+
+  @media (max-width: 30em) {
+    max-width: 100px;
+    margin: 0 10px 0 -10px;
+    font-size: ${(props) => props.theme.fontxs};
+  }
 `;
 
 export const ImageBox = styled.div`
   width: 45%;
-  margin-top: 50px;
-  margin-right: 70px;
   display: flex;
-  flex-wrap: wrap;
-  position: absolute;
-  -webkit-box-align: center;
-  -webkit-box-pack: center;
+  margin-top: 50px;
+  margin-right: 15rem;
   justify-content: flex-start;
-  padding: 10rem 20rem;
+  padding: 10rem 18rem;
   background-image: url("/mentalAwareness.png");
   background-size: contain;
   background-repeat: no-repeat;
@@ -111,6 +134,21 @@ export const ImageBox = styled.div`
   box-shadow: 10px 10px #d4f7d4;
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 20px;
+  }
+
+  @media (max-width: 64em) {
+    display: none;
+  }
+
+  @media (max-width: 64em) {
+    display: none;
+  }
 `;
 
 const CalendarContainer = styled.div`

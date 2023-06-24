@@ -22,6 +22,12 @@ export const Section = styled.section`
         opacity: 1;
     }
   }
+
+  @media (max-width: 30em) {
+    width: 100%;
+    margin: 0 30px 0 70px;
+    font-size: ${(props) => props.theme.fontsm};
+  }
 `;
 
 const Introduction = styled.div`
@@ -59,7 +65,7 @@ const Introduction = styled.div`
     margin-left: 6px;
   }
 
-  @media (max-width: 64em) {
+  @media (max-width: 78em) {
     display: none;
   }
 }
@@ -70,6 +76,7 @@ export const Container = styled.div`
   justify-content: space-between;
   margin-top: 10rem;
   margin-left: 5rem;
+  margin-right: 1.1rem;
 
   #container {
     border: solid 4px #474544;
@@ -252,7 +259,8 @@ export const Box = styled.div`
   }
 
   @media (max-width: 48em) {
-    width: 90%;
+    width: 87%;
+    margin-bottom: 20px;
   }
 `;
 
@@ -321,10 +329,20 @@ export const ArticleBox = styled.div`
     }
   }
 
+  @media (max-width: 70em) {
+    max-height: 20vh;
+    width: 90%;
+  }
+
   @media (max-width: 64em) {
     width: 100%;
+    max-height: 200px;
     margin: 20px; 
     float: none; 
+  }
+
+  @media (max-width: 32em) {
+    margin: 5px 0;
   }
 `;
 
@@ -349,6 +367,14 @@ const NumericPagination = styled.button`
   @media (max-width: 64em) {
     position: sticky;
     margin-left: 8.5rem;
+  }
+
+  @media (max-width: 48em) {
+    margin-left: 5rem;
+  }
+
+  @media (max-width: 32em) {
+    margin-left: 2rem;
   }
 `;
 
