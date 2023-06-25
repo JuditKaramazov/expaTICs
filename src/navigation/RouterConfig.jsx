@@ -10,6 +10,7 @@ import PrivateLayout from "../components/PrivateLayout/PrivateLayout";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import RestorePassword from "../pages/RestorePassword/RestorePassword";
+import ErrorPage from "../pages/_error";
 
 // Private routes.
 import Dashboard from "../pages/Dashboard/Dashboard";
@@ -44,10 +45,26 @@ const RouterConfig = () => (
           }
         />
         <Route
+          path="/error/"
+          element={
+            <PrivateLayout>
+              <ErrorPage statusCode={404} />
+            </ PrivateLayout>
+          }
+        />
+        <Route
           path="/dashboard/*"
           element={
             <PrivateRoute>
               <Dashboard />
+            </ PrivateRoute>
+          }
+        />
+        <Route
+          path="*"
+          element={
+            <PrivateRoute>
+              <ErrorPage statusCode={404} />
             </ PrivateRoute>
           }
         />
