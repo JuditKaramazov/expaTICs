@@ -29,8 +29,9 @@ export function AddIdeaForm(props) {
         placeholder="What's on your mind?"
         value={text}
         onChange={handleTextChange}
+        style={{ paddingRight: '2rem' }}
       />
-      <input type="submit" value="Add" />
+      <input type="submit" value="+" />
     </form>
   );
 }
