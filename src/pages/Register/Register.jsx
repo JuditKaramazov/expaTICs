@@ -3,7 +3,16 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
-import { Section, Container, Box, RegistrationImageContainer, FormBody, RegisterButton } from "./Register.styled";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { 
+  Section, 
+  Container, 
+  Box, 
+  RegistrationImageContainer, 
+  FormBody, 
+  RegisterButton 
+} from "./Register.styled";
 
 const Register = () => {
     const { signUp } = useContext(AuthContext);
@@ -29,14 +38,24 @@ const Register = () => {
       setPassword(e.target.value);
     };
   
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
       e.preventDefault();
-      signUp(email, password, firstName, lastName);
-      navigate("/login/");
+      try {
+        await signUp(email, password, firstName, lastName);
+        toast.success("Successfully registered - welcome!");
+    
+        setTimeout(() => {
+          navigate("/login/");
+        }, 5000);
+      } catch (error) {
+        console.log(error);
+        toast.error("Registration failed! Please, try again.");
+      }
     };
   
     return (
       <Section id="registration">
+        <ToastContainer />
         <Container>
           <Box>
             <RegistrationImageContainer>

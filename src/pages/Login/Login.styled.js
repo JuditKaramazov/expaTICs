@@ -112,20 +112,24 @@ export const FormBody = styled.form`
 
     .forgotPassword {
       cursor: pointer;
-
+  
+      &:hover {
+        color: #ff4f7e;
+      }
+    }
+  
+    .createAccount {
+      cursor: pointer;
+  
       &:hover {
         color: #ff4f7e;
       }
     }
 
-    .createAccount {
-      cursor: pointer;
-
-      &:hover {
-        color: #ff4f7e;
-      };
+    .error-message {
+      color: red;
+      margin-top: 10px;
     }
-  }
 `;
 
 export const RegisterButton = styled.button`

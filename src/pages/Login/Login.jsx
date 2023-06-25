@@ -3,7 +3,16 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
-import { Section, Container, Box, RegistrationImageContainer, FormBody, RegisterButton } from "./Login.styled";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { 
+  Section, 
+  Container, 
+  Box, 
+  RegistrationImageContainer, 
+  FormBody, 
+  RegisterButton 
+} from "./Login.styled";
 
 const Login = () => {
     const { login } = useContext(AuthContext);
@@ -24,19 +33,23 @@ const Login = () => {
       e.preventDefault();
       try {
         await login(email, password);
-        navigate("/dashboard/");
+        toast.success("Welcome back! Redirecting you...");
+    
+        setTimeout(() => {
+          navigate("/dashboard/");
+        }, 3000);
       } catch (error) {
-        // Handles login failure.;
         const errorMessage = error.message;
         console.log(errorMessage);
         setEmail("");
         setPassword("");
-        setError("Login failed. Please try again.");
+        setError("Login failed. Please, try again.");
       }
     };
 
   return (
     <Section id="login">
+      <ToastContainer />
       <Container>
         <Box>
           <RegistrationImageContainer>
@@ -45,7 +58,7 @@ const Login = () => {
 
           <FormBody onSubmit={handleSubmit}>
             <div className="form-header">
-              <div classname="form-title">
+              <div className="form-title">
                 <h1>
                   <em>L</em>og in to your account
                 </h1>

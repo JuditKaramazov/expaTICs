@@ -2,29 +2,41 @@
 
 import React, { useContext, useRef } from "react";
 import { AuthContext } from "../../context/AuthContext";
-import { Link } from "react-router-dom";
-import { Section, Container, Box, RegistrationImageContainer, FormBody, RegisterButton } from "./RestorePassword.styled";
+import { Link, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { 
+  Section, 
+  Container, 
+  Box, 
+  RegistrationImageContainer, 
+  FormBody,
+  RegisterButton
+ } from "./RestorePassword.styled";
 
 const RestorePassword = () => {
   const emailRef = useRef();
-  const { resetPassword, error, setError, message, setMessage } = useContext(AuthContext);
+  const { resetPassword } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      setMessage("");
-      setError("");
-
       await resetPassword(emailRef.current.value);
-      setMessage("Now, just follow the instructions we sent you - and see you soon!");
+      toast.success("Password restoration email sent!");
+
+      setTimeout(() => {
+        navigate("/login/");
+      }, 5000);
     } catch (error) {
-      setError("There was an unexpected error while restoring your password.");
       console.log(error);
+      toast.error("Failed to restore password.");
     }
   };
-
+  
   return (
     <Section id="restorePassword">
+      <ToastContainer />
       <Container>
         <Box>
           <RegistrationImageContainer>
