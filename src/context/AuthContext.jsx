@@ -36,6 +36,7 @@ export const AuthProvider = ({ children }) => {
       await setDoc(doc(db, "users", user.uid), {
         email,
         firstName,
+        lastName,
       });
       return true;
     } catch (error) {
