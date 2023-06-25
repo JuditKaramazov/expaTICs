@@ -146,12 +146,45 @@ const SubText = styled.p`
   }
 `;
 
-const CustomErrorPage = () => {
+const CustomErrorPage = ({ handleGoBack }) => (
+  <Section id="error">
+    <Container>
+      <Box>
+        <ErrorImageContainer>
+          <img src="/errorPage.png" alt="Doubtful young man." />
+        </ ErrorImageContainer>
+      </Box>
+      <Box>
+        <Title>
+          Well, that's embarrassing
+          <br />
+          ...
+        </ Title>
+        <SubText>
+          It seems there's a logistic problem somewhere!
+        </ SubText>
+        <ErrorButton onClick={handleGoBack}>
+          Go back
+        </ ErrorButton>
+      </ Box>
+    </ Container>
+  </ Section>
+);
+
+CustomErrorPage.propTypes = {
+  handleGoBack: PropTypes.func.isRequired,
+};
+
+const ErrorPage = ({ statusCode }) => {
   const router = useRouter();
 
   const handleGoBack = () => {
-    router.back();
+    router.push("/");
   };
+
+  if (statusCode === 404 || statusCode === 500) {
+    return <CustomErrorPage handleGoBack={handleGoBack} />;
+  }
 
   return (
     <Section id="error">
@@ -159,16 +192,14 @@ const CustomErrorPage = () => {
         <Box>
           <ErrorImageContainer>
             <img src="/errorPage.png" alt="Doubtful young man." />
-          </ErrorImageContainer>
+          </ ErrorImageContainer>
         </ Box>
         <Box>
           <Title>
-            Well, that's embarrassing
-            <br/>
-            ...
+            Error {statusCode}
           </ Title>
           <SubText>
-            It seems there's a logistic problem somewhere!
+            Oh, no... Something went terribly wrong!
           </ SubText>
           <ErrorButton onClick={handleGoBack}>
             Go back
@@ -176,35 +207,6 @@ const CustomErrorPage = () => {
         </ Box>
       </ Container>
     </ Section>
-  );
-};
-
-const ErrorPage = ({ statusCode }) => {
-  const router = useRouter();
-
-  const handleGoBack = () => {
-    router.back();
-  };
-
-  if (statusCode === 404 || statusCode === 500) {
-    return <CustomErrorPage />;
-  }
-
-  return (
-    <Section id="error">
-    <Container>
-      <Box>
-        <ErrorImageContainer>
-          <img src="/errorPage.png" alt="Doubtful young man." />
-        </ ErrorImageContainer>
-      </ Box>
-      <Box>
-        <Title>Error {statusCode}</ Title>
-        <SubText>Oh, no... Something went terribly wrong!</ SubText>
-        <ErrorButton onClick={handleGoBack}>Go back</ErrorButton>
-      </ Box>
-    </ Container>
-  </ Section>
   );
 };
 

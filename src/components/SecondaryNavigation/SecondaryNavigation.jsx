@@ -1,5 +1,3 @@
-'use client'
-
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Section, NavBar, Menu, MenuItem, HamburguerMenu, StyledLink } from "./SecondaryNavigation.styled";
@@ -14,7 +12,7 @@ const SecondaryNavigation = () => {
   const handleSignOut = async () => {
     const success = await logOut();
     if (success) {
-      navigate("/main/");
+      navigate("/");
     }
   };
 
@@ -36,24 +34,24 @@ const SecondaryNavigation = () => {
         <Logo />
         <HamburguerMenu click={click} onClick={() => setClick(!click)}>
           &nbsp;
-        </ HamburguerMenu>
+        </HamburguerMenu>
         <Menu click={click}>
           {/* <MenuItem onClick={() => scrollTo("/dashboard/privacy")}>Your privacy</ MenuItem> */}
           <MenuItem>
             <div className="mobile">
-            <StyledLink to="/main" onClick={handleSignOut}>
-            Sign Out
-          </ StyledLink>
+              <StyledLink href="/main" onClick={handleSignOut}>
+                Sign Out
+              </StyledLink>
             </div>
-          </ MenuItem>
-        </ Menu>
+          </MenuItem>
+        </Menu>
         <div className="desktop">
-        <StyledLink to="/main" onClick={handleSignOut}>
+          <StyledLink href="/main" onClick={handleSignOut}>
             Sign Out
-          </ StyledLink>
+          </StyledLink>
         </div>
-      </ NavBar>
-    </ Section>
+      </NavBar>
+    </Section>
   );
 };
 
