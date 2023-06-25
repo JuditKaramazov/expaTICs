@@ -1,7 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
-
 import { AuthProvider } from "../context/AuthContext";
 
 // Public routes.
@@ -20,6 +19,7 @@ const RouterConfig = () => (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Main />} />
+        <Route path="*" element={<ErrorPage statusCode={404} />} />
         <Route
           path="/login/"
           element={
@@ -45,26 +45,10 @@ const RouterConfig = () => (
           }
         />
         <Route
-          path="/error/"
-          element={
-            <PrivateLayout>
-              <ErrorPage statusCode={404} />
-            </ PrivateLayout>
-          }
-        />
-        <Route
           path="/dashboard/*"
           element={
             <PrivateRoute>
               <Dashboard />
-            </ PrivateRoute>
-          }
-        />
-        <Route
-          path="*"
-          element={
-            <PrivateRoute>
-              <ErrorPage statusCode={404} />
             </ PrivateRoute>
           }
         />

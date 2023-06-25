@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Link from 'next/link';
 
 const Section = styled.section`
   width: 100%;
@@ -59,7 +60,7 @@ const ErrorImageContainer = styled.div`
   }
 `;
 
-const ErrorButton = styled.button`
+const ErrorLink = styled.a`
   display: inline-block;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -145,14 +146,15 @@ const SubText = styled.p`
   }
 `;
 
-const CustomErrorPage = ({ handleGoBack }) => (
-  <Section id="error">
+const ErrorPage = ({ statusCode }) => {
+  return (
+    <Section id="error">
     <Container>
       <Box>
         <ErrorImageContainer>
           <img src="/errorPage.png" alt="Doubtful young man." />
         </ ErrorImageContainer>
-      </Box>
+      </ Box>
       <Box>
         <Title>
           Well, that's embarrassing
@@ -160,52 +162,18 @@ const CustomErrorPage = ({ handleGoBack }) => (
           ...
         </ Title>
         <SubText>
-          It seems there's a logistic problem somewhere!
+          It seems there's a {statusCode} logistic problem somewhere!
         </ SubText>
-        <ErrorButton onClick={handleGoBack}>
-          Go back
-        </ ErrorButton>
+        <Link href="/" style={{ decoration: "none", color: "black"} }>
+            <ErrorLink>
+              Go back
+            </ ErrorLink>
+          </ Link>
       </ Box>
     </ Container>
   </ Section>
 );
-
-CustomErrorPage.propTypes = {
-  handleGoBack: PropTypes.func.isRequired,
-};
-
-const ErrorPage = ({ statusCode }) => {
-  const handleGoBack = () => {
-    router.push("/");
   };
-
-  if (statusCode === 404 || statusCode === 500) {
-    return <CustomErrorPage handleGoBack={handleGoBack} />;
-  }
-
-  return (
-    <Section id="error">
-      <Container>
-        <Box>
-          <ErrorImageContainer>
-            <img src="/errorPage.png" alt="Doubtful young man." />
-          </ ErrorImageContainer>
-        </ Box>
-        <Box>
-          <Title>
-            Error {statusCode}
-          </ Title>
-          <SubText>
-            Oh, no... Something went terribly wrong!
-          </ SubText>
-          <ErrorButton onClick={handleGoBack}>
-            Go back
-          </ ErrorButton>
-        </ Box>
-      </ Container>
-    </ Section>
-  );
-};
 
 ErrorPage.propTypes = {
   statusCode: PropTypes.number,
