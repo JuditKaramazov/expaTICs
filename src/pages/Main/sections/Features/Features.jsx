@@ -33,50 +33,48 @@ const Features = () => {
       <Title>FEATURES</ Title>
       <Container>
         <Box>
-          <Accordion title="COUNTRY CONNECTION">
-            Enables expats to connect with/discover their host country.
-            We understand that as an expat, you'd want to see news and 
-            events relevant to your location, so you can connect with the 
-            local culture and community. We've got you covered thanks to 
-            our news feed!
+          <Accordion title="AUTHENTICATION SYSTEM">
+            As an incipient developer, there are not many things that I 
+            can provide you with. Still, and since I do understand that
+            some minor projects may result interesting from an external
+            perspective, an authentication system has been enabled to
+            facilitate the app's usage and overall experience.
           </ Accordion>
           <Accordion title="EXPAT COMMUNITY">
-            Facilitates building connections among expats in the same location.
             As expats, it's crucial to collaborate with others just so you can
-            share knowledge and experiences, and we thought that collaboratively 
-            building a wiki would make it easier for you.
+            connect at a deeper level with your host country and its attractions. 
+            It's not much, but we thought that collaboratively building a little 
+            wiki would make it easier for you. Feel free to share your knowledge 
+            there - and stay tuned for more updates!
           </ Accordion>
           <Accordion title="PERSONAL WELL-BEING">
-            Provides tools for expats to track their mood and receive relevant advice.
             We do understand that sometimes, we can't prioritize our well-being as 
             much as we'd want to, which becomes even more complicated while dealing
             with a new reality. However, it is still essential to track our mood and 
-            receive advice based on our current state.
+            take different measures accordingly. Remember: the EU / EEA mental health 
+            helpline can be called dialing <b>116 123</b>.
           </ Accordion>
         </ Box>
         <Box>
           <Accordion title="SOLIDARITY AND SUPPORT">
-            Allows expats to show solidarity by buying symbolic coffees for others.
             Since solidarity is this application's main pillar, we thought that one 
-            of the best ways of expressing solidarity with others would be buying them 
-            a symbolic coffee with encouraging messages. It's always nice to hear 
-            something nice, no matter the origin itself.
+            of the best ways of expressing solidarity with others and one's self would 
+            be allowing users to open themselves - and sometimes, get a symbolic
+            answer. It's always nice to hear something nice, no matter the origin itself.
           </ Accordion>
           <Accordion title="BUREAUCRATIC ASSISTANCE">
-            Assists with bureaucratic procedures.
             We all agree: it gets extremely difficult to know where to go or who to 
             call when things start getting complicated. No matter if it's about a 
-            medical problem or some Visa issues, our AI-powered chat system will 
-            help you find relevant information and resources for various bureaucratic
+            medical problem or some Visa issues, an AI-powered chat system will help  
+            you find relevant information and resources for various bureaucratic
             tasks.
           </ Accordion>
           <Accordion title="SOMETHING ELSE...?">
-            Of course there's more to come! However, and since there's only one person  
-            working on this website architecture and features, it will take me a bit 
-            to find the best implementations for the expats community. Do not hesitate 
-            to let me know about your own ideas and perspective, though! As someone who 
-            spent some time living in a foreign country, I'd want to prioritize your 
-            emotional, social and psychological needs by keeping this site up to date. 
+            Of course, there's more to come! However, since only one person is working on 
+            this website's architecture and features, it will take me a bit to find the 
+            best implementations. Keep in mind that, as someone who spent some time living  
+            in a foreign country, I'd want to prioritize your emotional, social, and 
+            psychological needs by keeping this site up to date.
           </ Accordion>
         </ Box>
       </ Container>
