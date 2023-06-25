@@ -4,7 +4,7 @@ import { SolidaryIdea } from '@/src/components/SolidaryIdea/SolidaryIdea';
 import { generateId, getNewExpirationTime } from '@/src/utils/expirationTime';
 import { Modal } from '@/src/components/Modal/Modal';
 import CoffeeGift from '@/src/components/CoffeeGift/CoffeeGift';
-import { FormContainer } from './Solidarity.styled';
+import { Section, Introduction, FormContainer } from './Solidarity.styled';
 
 function Solidarity()  {
   const [removedCount, setRemovedCount] = useState(0);
@@ -44,8 +44,14 @@ function Solidarity()  {
   }, [showModal]);
 
   return (
-    <div>
-      <h1>Solidarity</h1>
+    <Section>
+      <Introduction>
+        <h1>Welcome to your</h1>
+        <h2>personal space.</h2>
+        <br/>
+        <p>Feel free to keep track (or not) of your state.</p>
+        <p>Stay safe.</p>
+      </ Introduction>
       <FormContainer>
         <AddIdeaForm addIdea={addIdea} />
         <ul className="ideas">
@@ -57,7 +63,7 @@ function Solidarity()  {
       <Modal showModal={showModal} setShowModal={setShowModal}>
         <CoffeeGift />
       </ Modal>
-    </div>
+    </ Section>
   );
 };
 
