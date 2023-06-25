@@ -100,8 +100,23 @@ export const Box = styled.div`
   align-items: center;
   justify-content: center;
 
+  span {
+    cursor: pointer;
+
+    &:hover {
+      color: salmon;
+    }
+  }
+
   @media (max-width: 64em) {
     float: left;
+
+    span, 
+    label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
   }
 
   @media (max-width: 48em) {

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Calendar from 'react-calendar';
 import "react-calendar/dist/Calendar.css";
 import { 
@@ -10,6 +10,9 @@ import {
   CalendarContainer
  } from "./Menu.styled";
 import ColorTracker from "../../../components/ColorTracker/ColorTracker";
+import { MdHelpOutline } from 'react-icons/md';
+import { Modal } from "@/src/components/Modal/Modal";
+import ColorTrackerHelp from "@/src/components/ColorTrackerHelp/ColorTrackerHelp";
 
 const Menu = () => {
   const {
@@ -20,6 +23,8 @@ const Menu = () => {
     tileContent,
     colorMap,
   } = ColorTracker();
+
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <Section>
@@ -44,11 +49,18 @@ const Menu = () => {
             >
               <option value="">None</option>
               <option value="pink">Pink</option>
-              <option value="blue">Blue</option>
-              <option value="green">Green</option>
-              <option value="yellow">Yellow</option>
-              <option value="dark-grey">Dark Grey</option>
+              <option value="skyblue">Blue</option>
+              <option value="tomato">Red</option>
+              <option value="midnightblue">Midnight</option>
+              <option value="orchid">Orchid</option>
+              <option value="saddlebrown">Brown</option>
+              <option value="mediumseagreen">Green</option>
+              <option value="orange">Orange</option>
+              <option value="silver">Silver</option>
             </select>
+            <span className="icon" onClick={() => setShowModal(true)}>
+            <MdHelpOutline />
+            </span>
           </div>
           <CalendarContainer>
             <Calendar
@@ -61,6 +73,9 @@ const Menu = () => {
           </ CalendarContainer>
         </ Box>
       </ Container>
+      <Modal showModal={showModal} setShowModal={setShowModal}>
+        <ColorTrackerHelp />
+      </ Modal>
     </ Section>
   );
 };
