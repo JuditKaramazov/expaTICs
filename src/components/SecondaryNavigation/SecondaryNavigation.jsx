@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import { Section, NavBar, Menu, MenuItem, HamburguerMenu, StyledLink } from "./SecondaryNavigation.styled";
 import Logo from "../Logo/Logo";
 import { AuthContext } from "../../context/AuthContext";
@@ -7,12 +7,33 @@ import { AuthContext } from "../../context/AuthContext";
 const SecondaryNavigation = () => {
   const [click, setClick] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
   const { logOut } = useContext(AuthContext);
 
   const handleSignOut = async () => {
     const success = await logOut();
     if (success) {
       navigate("/");
+    }
+  };
+
+  const isLoginPage = location.pathname === "/login/";
+  const isRegisterPage = location.pathname === "/register/";
+  const isRestorePasswordPage = location.pathname === "/restorepassword/";
+
+  const getButtonText = () => {
+    if (isLoginPage || isRegisterPage || isRestorePasswordPage) {
+      return "Log In";
+    } else {
+      return "Sign Out";
+    }
+  };
+
+  const handleButtonClick = () => {
+    if (isLoginPage || isRegisterPage || isRestorePasswordPage) {
+      navigate("/login/");
+    } else {
+      handleSignOut();
     }
   };
 
@@ -36,18 +57,17 @@ const SecondaryNavigation = () => {
           &nbsp;
         </HamburguerMenu>
         <Menu click={click}>
-          {/* <MenuItem onClick={() => scrollTo("/dashboard/privacy")}>Your privacy</ MenuItem> */}
           <MenuItem>
             <div className="mobile">
-              <StyledLink href="/main" onClick={handleSignOut}>
-                Sign Out
+              <StyledLink to="/main" onClick={handleButtonClick}>
+                {getButtonText()}
               </StyledLink>
             </div>
           </MenuItem>
         </Menu>
         <div className="desktop">
-          <StyledLink href="/main" onClick={handleSignOut}>
-            Sign Out
+          <StyledLink to="/main" onClick={handleButtonClick}>
+            {getButtonText()}
           </StyledLink>
         </div>
       </NavBar>

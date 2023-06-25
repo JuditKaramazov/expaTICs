@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { useRouter } from 'next/router';
 
 const Section = styled.section`
   width: 100%;
@@ -176,8 +175,6 @@ CustomErrorPage.propTypes = {
 };
 
 const ErrorPage = ({ statusCode }) => {
-  const router = useRouter();
-
   const handleGoBack = () => {
     router.push("/");
   };
