@@ -59,73 +59,73 @@ export const RegistrationImageContainer = styled.div`
 export const FormBody = styled.form`
   display: flex;
   flex-direction: column;
-width: 80%;
-align-items: center;
-color: ${(props) => props.theme.body};
-background-color: #202020;
-border: 2px solid #ff4f7e;
-padding: 1.5rem;
+  width: 80%;
+  align-items: center;
+  color: ${(props) => props.theme.body};
+  background-color: #202020;
+  border: 2px solid #ff4f7e;
+  padding: 1.5rem;
+  
+  @media (max-width: 64em) {
+    min-width: 50vh;
+  }
 
-@media (max-width: 64em) {
-  min-width: 50vh;
-}
+  @media (max-width: 48em) {
+    max-width: 40vh;
+  }
 
-@media (max-width: 48em) {
-  max-width: 40vh;
-}
+  .form-header {
+    padding: 2.5rem;
+  }
 
-.form-header {
-  padding: 2.5rem;
-}
-
-h1 {
-  margin-bottom: 20px;
-  color: #ff4f7e;
-  font-size: 2rem;
-  text-align: center;
-}
-
-em {
-  font-size: 3rem;
-  font-style: normal;
-  -webkit-text-stroke: 0.3px whitesmoke;
-  text-stroke: 0.3px whitesmoke;
-}
-
-  input {
-    width: 100%;
-    margin: 3.2px;
-    background: whitesmoke;
-    font-size: 1rem;
-    letter-spacing: 0.8px;
-    line-height: 40px;
-    border: 1px solid #ff4f7e;
-    border-radius: 3px !important;
+  h1 {
+    margin-bottom: 20px;
+    color: #ff4f7e;
+    font-size: 2rem;
     text-align: center;
+  }
 
-    &:focus {
-      color: black;
-      background-color: #ffddf4;
-      border-color: #edd700;
+  em {
+    font-size: 3rem;
+    font-style: normal;
+    -webkit-text-stroke: 0.3px whitesmoke;
+    text-stroke: 0.3px whitesmoke;
+  }
+
+    input {
+      width: 100%;
+      margin: 3.2px;
+      background: whitesmoke;
+      font-size: 1rem;
+      letter-spacing: 0.8px;
+      line-height: 40px;
+      border: 1px solid #ff4f7e;
+      border-radius: 3px !important;
+      text-align: center;
+
+      &:focus {
+        color: black;
+        background-color: #ffddf4;
+        border-color: #edd700;
+      }
+    }
+
+    .forgotPassword {
+      cursor: pointer;
+
+      &:hover {
+        color: #ff4f7e;
+      }
+    }
+
+    .createAccount {
+      cursor: pointer;
+
+      &:hover {
+        color: #ff4f7e;
+      };
     }
   }
-
-  .forgotPassword {
-    cursor: pointer;
-
-    &:hover {
-      color: #ff4f7e;
-    }
-  }
-
-  .createAccount {
-    cursor: pointer;
-
-    &:hover {
-      color: #ff4f7e;
-    };
-  }
-}
 `;
 
 export const RegisterButton = styled.button`
