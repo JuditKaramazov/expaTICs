@@ -11,6 +11,7 @@ import {
 } from "firebase/auth";
 import { setDoc, doc } from "firebase/firestore";
 import { auth, db } from "../config/firebase";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 export const AuthContext = createContext();
 
@@ -19,7 +20,7 @@ export const AuthProvider = ({ children }) => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [currentUser, setCurrentUser] = useState();
+  const [currentUser, setCurrentUser] = useLocalStorage('currentUser', null);
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
 
@@ -85,10 +86,15 @@ export const AuthProvider = ({ children }) => {
       }
     });
 
+    const storedAuthToken = sessionStorage.getItem("Auth Token");
+    if (storedAuthToken && !currentUser) {
+      setCurrentUser(auth.currentUser);
+    }
+
     return () => {
       unsubscribe();
     };
-  }, [currentUser]);
+  }, [currentUser, setCurrentUser]);
 
   return (
     <AuthContext.Provider
