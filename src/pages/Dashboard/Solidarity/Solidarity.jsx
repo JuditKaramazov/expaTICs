@@ -4,56 +4,7 @@ import { SolidaryIdea } from '@/src/components/SolidaryIdea/SolidaryIdea';
 import { generateId, getNewExpirationTime } from '@/src/utils/expirationTime';
 import { Modal } from '@/src/components/Modal/Modal';
 import CoffeeGift from '@/src/components/CoffeeGift/CoffeeGift';
-import styled from 'styled-components';
-
-const FormContainer = styled.div`
-margin: 0 auto;
-  max-width: 600px;
-  width: 100%;
-
-  .AddIdeaForm {
-    display: flex;
-    flex-wrap: wrap;
-  }
-
-  .AddIdeaForm input {
-    padding: 1.5rem;
-    border: 1px solid #666;
-    border-radius: 4px;
-  }
-  
-  .AddIdea input[type='text'] {
-    flex-grow: 1;
-    margin-right: 0.5rem;
-  }
-
-  .ideas {
-    list-style-type: none;
-    padding: 0;
-  }
-  
-  .Idea {
-    padding: 1rem;
-    margin-bottom: 1rem;
-    border-radius: 3px;
-    background-color: #eee;
-  }
-  
-  .Idea .remove-button {
-    font-size: 80%;
-    float: right;
-    border: 0;
-    border-radius: 3px;
-    background: transparent;
-  }
-  
-  .Idea .remove-button:hover {
-    color: #fff;
-    background-color: #000;
-  }
-
-`;
-
+import { FormContainer } from './Solidarity.styled';
 
 function Solidarity()  {
   const [removedCount, setRemovedCount] = useState(0);
