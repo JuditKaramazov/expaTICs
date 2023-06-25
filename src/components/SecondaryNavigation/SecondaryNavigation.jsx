@@ -1,13 +1,6 @@
 import React, { useContext, useState } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
-import {
-  Section,
-  NavBar,
-  Menu,
-  MenuItem,
-  HamburguerMenu,
-  StyledLink,
-} from "./SecondaryNavigation.styled";
+import { useNavigate, useLocation, Link } from "react-router-dom";
+import { Section, NavBar, Menu, MenuItem, HamburguerMenu, StyledLink } from "./SecondaryNavigation.styled";
 import Logo from "../Logo/Logo";
 import { AuthContext } from "../../context/AuthContext";
 
@@ -66,14 +59,14 @@ const SecondaryNavigation = () => {
         <Menu click={click}>
           <MenuItem>
             <div className="mobile">
-              <StyledLink to="/main" onClick={handleButtonClick}>
+              <StyledLink to="/login/" onClick={handleButtonClick}>
                 {getButtonText()}
               </StyledLink>
             </div>
           </MenuItem>
         </Menu>
         <div className="desktop">
-          <StyledLink to="/main" onClick={handleButtonClick}>
+          <StyledLink to="/login/" onClick={handleButtonClick}>
             {getButtonText()}
           </StyledLink>
         </div>
