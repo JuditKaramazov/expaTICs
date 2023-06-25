@@ -27,11 +27,10 @@ export const Title = styled.h1`
 
 export const Container = styled.div`
   width: 75%;
-  margin: 2rem auto;
-
   display: flex;
-  justify-content: space-between;
+  margin: 2rem auto;
   align-items: center;
+  justify-content: space-between;
 
   @media (max-width: 64em) {
     width: 80%;

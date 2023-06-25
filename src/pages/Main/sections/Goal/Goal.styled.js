@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Section = styled.section`
   min-height: ${(props) => `calc(100vh - ${props.theme.navHeight})`};
+  height: auto;
   width: 100vw;
   position: relative;
   background-color: ${(props) => props.theme.body};
@@ -9,7 +10,7 @@ export const Section = styled.section`
 
 export const Container = styled.div`
   width: 75%;
-  min-height: 80vh;
+  min-height: 85vh;
   display: flex;
   margin: 0 auto;
   align-items: center;
@@ -64,7 +65,7 @@ export const Title = styled.h2`
     font-size: ${(props) => props.theme.fontlg};
 
     em {
-      font-size: 4rem;
+      font-size: 3.5rem;
     }
   }
 

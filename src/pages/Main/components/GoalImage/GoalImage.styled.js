@@ -4,11 +4,15 @@ export const GoalImageContainer = styled.div`
   width: 100%;
 
   img {
-    width: 100%;
     height: auto;
+    width: 100%;
   }
 
   @media (max-width: 64em) {
-    min-width: 50vh;
+    max-width: 60vh;
+  }
+
+  @media (max-width: 48em) {
+    max-width: 50vh;
   }
 `;
