@@ -25,9 +25,13 @@ const Community = () => {
     editingIndex,
   } = useContext(WikiContext);
   
-  const [showFullContent, setShowFullContent] = useState(false);
-  const toggleFullContent = () => {
-    setShowFullContent(!showFullContent);
+  const [showFullContent, setShowFullContent] = useState({});
+
+  const toggleFullContent = (index) => {
+    setShowFullContent((prevState) => ({
+      ...prevState,
+      [index]: !prevState[index]
+    }));
   };
 
   const EditButton = ({ onClick }) => (
@@ -42,14 +46,14 @@ const Community = () => {
     </button>
   );
 
-  const ShowMoreButton = ({ onClick }) => (
-    <button onClick={onClick} className="icon-button">
+  const ShowMoreButton = ({ onClick, index }) => (
+    <button onClick={() => onClick(index)} className="icon-button">
       <FaPlus className="icon" />
     </button>
   );
   
-  const ShowLessButton = ({ onClick }) => (
-    <button onClick={onClick} className="icon-button">
+  const ShowLessButton = ({ onClick, index }) => (
+    <button onClick={() => onClick(index)} className="icon-button">
       <FaMinus className="icon" />
     </button>
   );
@@ -102,43 +106,49 @@ const Community = () => {
         <p>enjoyed? Here's your Agora!</p>
       </ Introduction>
       <Container>
-      <Box>
-        <div className="articles-container">
-          {displayedArticles.map((article, index) => (
-            <ArticleBox key={index}>
-            <div className="articles">
-              <h2 className="header">{article.title}</h2>
-              {showFullContent ? (
-                <p className="content">{article.content}</p>
-              ) : (
-                <p className="content content-1">
-                  {article.content.length > 10
-                    ? article.content.substring(0, 10) + "..."
-                    : article.content}
-                </p>
-              )}
-              {editingIndex === index ? (
-                  <>
-                    <CancelButton onClick={() => handleEdit(-1)} />
-                    <SaveButton onClick={handleUpdate} />
-                  </>
-                ) : (
-                  <>
-                    <EditButton onClick={() => handleEdit(index)} />
-                    <DeleteButton onClick={() => handleDelete(index)} />
-                  </>
-                )}
-                {showFullContent ? (
-                  <ShowLessButton onClick={toggleFullContent} />
-                ) : (
-                  <ShowMoreButton onClick={toggleFullContent} />
-                )}
-              </div>
-            </ ArticleBox>          
-          ))}
-        </div>
-      </ Box>
-      <Box>
+        <Box>
+          <div className="articles-container">
+            {displayedArticles.map((article, index) => (
+              <ArticleBox key={index}>
+                <div className="articles">
+                  <h2 className="header">{article.title}</h2>
+                  {showFullContent[index] ? (
+                    <p className="content">{article.content}</p>
+                  ) : (
+                    <p className="content content-1">
+                      {article.content.length > 15
+                        ? article.content.substring(0, 15) + "..."
+                        : article.content}
+                    </p>
+                  )}
+                  {editingIndex === index ? (
+                    <>
+                      <CancelButton onClick={() => handleEdit(-1)} />
+                      <SaveButton onClick={handleUpdate} />
+                    </>
+                  ) : (
+                    <>
+                      <EditButton onClick={() => handleEdit(index)} />
+                      <DeleteButton onClick={() => handleDelete(index)} />
+                    </>
+                  )}
+                  {showFullContent[index] ? (
+                    <ShowLessButton
+                      onClick={() => toggleFullContent(index)}
+                      index={index}
+                    />
+                  ) : (
+                    <ShowMoreButton
+                      onClick={() => toggleFullContent(index)}
+                      index={index}
+                    />
+                  )}
+                </div>
+              </ ArticleBox>
+            ))}
+          </div>
+        </ Box>
+        <Box>
         <div id="container">
           <h3>&bull; Share your knowledge &bull;</h3>
         <div className="underline"></div>
@@ -162,21 +172,21 @@ const Community = () => {
             onChange={(e) => setContent(e.target.value)}
             required
           ></textarea>
-          {editingIndex === -1 ? (
-            <button type="submit">Create Article</button>
-          ) : (
-            <button onClick={handleUpdate}>Update Article</button>
-          )}
-        </ FormContainer>
+            {editingIndex === -1 ? (
+              <button type="submit">Create Article</button>
+            ) : (
+              <button onClick={handleUpdate}>Update Article</button>
+            )}
+          </ FormContainer>
         </div>
-        </ Box>
-      </ Container>
-      <NumericPagination
-        onClick={goToPreviousPage}
-        disabled={currentPage === 1}
-      >
-        &lt;
-      </ NumericPagination>
+      </ Box>
+    </ Container>
+    <NumericPagination
+      onClick={goToPreviousPage}
+      disabled={currentPage === 1}
+    >
+      &lt;
+    </ NumericPagination>
       {Array.from({ length: totalPages }, (_, index) => (
         <NumericPagination
           key={index}

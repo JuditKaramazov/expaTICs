@@ -302,12 +302,6 @@ export const ArticleBox = styled.div`
     transition: all .3s ease;
   }
 
-  .content-1:hover{
-    color: black;
-    border: 1px solid salmon;
-    background: #fdfbe8;
-  }
-
   .icon-button {
     background: transparent;
     border: none;
