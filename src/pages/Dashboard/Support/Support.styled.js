@@ -66,6 +66,30 @@ export const Introduction = styled.div`
     margin-left: 6px;
   }
 
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    color: darkgray;
+    transition: color 0.2s ease-in-out;
+
+    &:hover {
+      transform: scale(1.2);
+      color: pink;
+    }
+  }
+
+  @media (max-width: 40em) {
+    h1,
+    h2,
+    p {
+      display: none;
+    }
+
+    h3 {
+      font-size: 1rem;
+    }
+  }
+
   @media (max-width: 30em) {
     width: 90%;
     margin-left: 50px;
@@ -84,27 +108,13 @@ export const Container = styled.div`
   padding-top: 6rem;
   padding-bottom: 6rem;
 
-  .input-container {
-    position: fixed;
-    bottom: 0.2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: calc(100% - 1rem);
-    max-width: 36rem;
-    margin-bottom: 1rem;
-    z-index: 1;
-  }
-
   input {
     width: 100%;
     outline: none;
     border: 1px solid #cbd5e0;
     border-radius: 20px;
-    padding: 0.5rem 1rem;
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    padding: 0.5rem 1rem;
   }
 
   .icon {
@@ -127,6 +137,11 @@ export const Container = styled.div`
     &:hover {
       color: pink;
     }
+  }
+
+  @media (max-width: 32em) {
+    width: 90%;
+    margin-left: 20px;
   }
 `;
 

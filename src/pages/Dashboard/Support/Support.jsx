@@ -6,24 +6,17 @@ import {
   MessageBox
 } from "./Support.styled";
 import { MdHelpOutline } from "react-icons/md";
+import { FaPhone } from 'react-icons/fa';
+import { IoIosHeart } from 'react-icons/io';
+import { AiOutlineMail } from 'react-icons/ai';
 import { Modal } from "@/src/components/Modal/Modal";
 import ChatHelp from "@/src/components/ChatHelp/ChatHelp";
 import { useChat } from "ai/react";
-import { FaPhone } from 'react-icons/fa';
-import { IoIosHeart } from 'react-icons/io';
 
 
 export default function Support() {
   const { messages, input, handleInputChange, handleSubmit } = useChat();
   const [showModal, setShowModal] = useState(false);
-
-  const handlePhoneIconClick = () => {
-    window.open("https://europa.eu/youreurope/citizens/travel/security-and-emergencies/emergency/index_en.htm", "_blank");
-  };
-
-  const handleHeartIconClick = () => {
-    window.open("https://www.mhe-sme.org/library/youth-helplines/", "_blank");
-  };
 
   return (
     <Section>
@@ -35,15 +28,23 @@ export default function Support() {
           where to go often feel like immense obstacles.</p>
         <h3 style={{ fontWeight: "200" }}>
           <br />
+          <br />
           <a href="https://europa.eu/youreurope/citizens/travel/security-and-emergencies/emergency/index_en.htm" target="_blank" rel="noopener noreferrer">
-            <FaPhone size={25} onClick={handlePhoneIconClick} />
+            <FaPhone />
           </a>
-          - <b>112</b>, European emergency phone number.
+          · <b>112</b>, European emergency phone number.
+          <br />
           <br />
           <a href="https://www.mhe-sme.org/library/youth-helplines/" target="_blank" rel="noopener noreferrer">
-            <IoIosHeart size={25} onClick={handleHeartIconClick} />
+            <IoIosHeart />
           </a>
-          - <b>116 123</b>, EU / EEA mental health helpline.
+          · <b>116 123</b>, EU / EEA mental health helpline.
+          <br />
+          <br />
+          <a href="https://european-union.europa.eu/live-work-study/funding-grants-subsidies_en" target="_blank" rel="noopener noreferrer">
+            < AiOutlineMail />
+          </a>
+          · <b>funding</b>, <b>grants</b> and <b>subsidies</b>.
         </h3>
       </ Introduction>
       <Container>
