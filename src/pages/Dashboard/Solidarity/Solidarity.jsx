@@ -12,12 +12,12 @@ function Solidarity()  {
   const [ideas, setIdeas] = useState([
     {
       id: generateId(),
-      text: 'This is a place for your passing thoughts.',
+      text: 'This is a place for your personal, intransferible thoughts.',
       expiresAt: getNewExpirationTime(),
     },
     {
       id: generateId(),
-      text: "They'll be removed after 15 seconds.",
+      text: "No worries; they'll be removed after some seconds.",
       expiresAt: getNewExpirationTime(),
     },
   ]);
@@ -46,11 +46,12 @@ function Solidarity()  {
   return (
     <Section>
       <Introduction>
-        <h1>Welcome to your</h1>
-        <h2>personal space.</h2>
-        <br/>
-        <p>Feel free to keep track (or not) of your state.</p>
-        <p>Stay safe.</p>
+        <h1>If solidarity could be</h1>
+        <h2>expressed in plain words,</h2>
+        <p>how would it look like?</p>
+        <p>Wishes, worries... simply express yourself as you'd 
+        want others to share their world with you.</p>
+        <img src="/communitySolidarity.png" alt="Solidary individual visual." />
       </ Introduction>
       <FormContainer>
         <AddIdeaForm addIdea={addIdea} />

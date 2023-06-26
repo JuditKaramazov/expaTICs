@@ -66,6 +66,17 @@ export const Introduction = styled.div`
     margin-left: 6px;
   }
 
+  img {
+    max-width: 400px;
+    margin: auto;
+  }
+
+  @media (max-width: 40em) {
+    img {
+      display: none;
+    }
+  }
+
   @media (max-width: 30em) {
     width: 90%;
     margin-left: 50px;
@@ -75,6 +86,7 @@ export const Introduction = styled.div`
 
 export const FormContainer = styled.div`
   max-width: 600px;
+  max-height: 30vh;
   width: 100%;
   margin-bottom: 10rem;
 
@@ -114,6 +126,10 @@ export const FormContainer = styled.div`
   }
 
   .ideas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
     list-style-type: none;
   }
   
@@ -126,8 +142,8 @@ export const FormContainer = styled.div`
     position: relative;
     align-items: center;
     justify-content: center;
-    background-color: rgba(74, 190, 243, 0.37);
     padding: 1rem;
+    background-color: rgba(74, 190, 243, 0.37);
     border-radius: 30px;
     text-align: center;
   }
