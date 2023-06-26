@@ -36,16 +36,16 @@ const Navigation = () => {
           <MenuItem onClick={() => scrollTo("features")}>Features</ MenuItem>
           <MenuItem>
             <div className="mobile">
-                <Link to="/login/">
-                    <Button text="Get Started" />
-                </ Link>
+              <Link to="/login/">
+                <Button text="Get Started" />
+              </ Link>
             </div>
           </ MenuItem>
         </ Menu>
         <div className="desktop">
-            <Link to="/login/">
-                <Button text="Get Started" />
-            </ Link>
+          <Link to="/login/">
+            <Button text="Get Started" />
+          </ Link>
         </div>
       </ NavBar>
     </ Section>

@@ -12,10 +12,10 @@ const apiConfig = new Configuration({
 const openai = new OpenAIApi(apiConfig)
 
 export async function POST(req) {
-  // Extract the `messages` from the body of the request
+  // Extracts the `messages` from the body of the request.
   const { messages } = await req.json();
 
-  // Request the OpenAI API for the response based on the prompt
+  // Requests the OpenAI API for the response based on the prompt.
   const response = await openai.createChatCompletion({
     model: 'gpt-3.5-turbo',
     stream: true,
@@ -27,9 +27,9 @@ export async function POST(req) {
     presence_penalty: 1,
   })
 
-  // Convert the response into a friendly text-stream
+  // Converts the response into a friendly text-stream.
   const stream = OpenAIStream(response)
 
-  // Respond with the stream
+  // Responds with the stream.
   return new StreamingTextResponse(stream)
 }

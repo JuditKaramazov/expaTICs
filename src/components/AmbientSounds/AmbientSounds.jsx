@@ -55,18 +55,18 @@ const AmbientSounds = () => {
         <br/>
         &hearts;
         </p>
-        <div className="sound-list">
-  {sounds.map((sound) => (
-    <div
-      className={`sound-item ${active.includes(sound.id) && "active"} ${loading === sound.id && "loading"}`}
-      key={sound.id}
-      onClick={() => play(sound.id)}
-    >
-      {sound.sound.split("-").join(" ")}
-      {loading === sound.id && <LoadingOutlined className="loading-icon" />}
-    </div>
-  ))}
-</div>
+      <div className="sound-list">
+      {sounds.map((sound) => (
+        <div
+          className={`sound-item ${active.includes(sound.id) && "active"} ${loading === sound.id && "loading"}`}
+          key={sound.id}
+          onClick={() => play(sound.id)}
+        >
+          {sound.sound.split("-").join(" ")}
+          {loading === sound.id && <LoadingOutlined className="loading-icon" />}
+        </div>
+          ))}
+        </div>
       </div>
     </div>
   );

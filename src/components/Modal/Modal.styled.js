@@ -4,11 +4,11 @@ export const Overlay = styled.div`
   display: flex;
   height: 100%;
   width: 100%;
+  top: 0;
+  left: 0;
   align-items: center;
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.7);
-  left: 0;
-  top: 0;
   position: fixed;
   animation: smoothStart 0.7s ease-in;
 

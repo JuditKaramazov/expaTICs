@@ -31,8 +31,8 @@ export const Container = styled.div`
 
   .swiper-slide {
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     border-radius: 20px;
 
     img {
@@ -90,8 +90,8 @@ export const Container = styled.div`
 `;
 
 export const SubText = styled.p`
+  margin-top: 20px;
   color: ${(props) => props.theme.text};
   font-size: 14px;
   text-align: center;
-  margin-top: 20px;
 `;

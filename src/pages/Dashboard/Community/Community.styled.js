@@ -70,17 +70,17 @@ export const Introduction = styled.div`
 
 export const Container = styled.div`
   display: flex;
-  justify-content: space-between;
   margin-top: 10rem;
   margin-left: 5rem;
   margin-right: 1.1rem;
+  justify-content: space-between;
 
   #container {
-    border: solid 4px #474544;
-    background: #fdfbe8;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background: #fdfbe8;
+    border: solid 4px #474544;
   }
 
   h3 {
@@ -94,22 +94,22 @@ export const Container = styled.div`
   }
   
   .underline {
-    border-bottom: solid 2px #474544;
-    margin: 1em auto;
     width: 80px;
+    margin: 1em auto;
+    border-bottom: solid 2px #474544;
   }
   
   .iconWrapper {
-    margin: 50px auto 0;
     width: 50%;
+    margin: 50px auto 0;
   }
   
   .icon {
-    display: block;
-    fill: #474544;
-    height: 50px;
-    margin: 0 auto;
     width: 50px;
+    height: 50px;
+    display: block;
+    margin: 0 auto;
+    fill: #474544;
   }
 
   @media (max-width: 64em) {
@@ -118,9 +118,9 @@ export const Container = styled.div`
   }
 
   @media (max-width: 48em) {
+    width: 100%;
     position: absolute;
     flex-direction: column;
-    width: 100%;
   }
 `;
 
@@ -128,9 +128,9 @@ export const FormContainer = styled.form`
   max-width: 708px;
   width: 50%;
   margin: 20px 0;
+  justify-content: flex-end;
   position: relative;
   padding: 35.5px;
-  justify-content: flex-end;
   flex: 1;
 
   button, input, select, textarea {
@@ -270,11 +270,11 @@ export const ArticleBox = styled.div`
   margin: 30px 20px 20px 20px;
   justify-content: center;
   text-align: center;
+  color: white;
+  float: left;
   background: #1F2124;
   box-shadow: 0 0 20px rgba(0,0,0,0.4);
   border-radius: 5px;
-  color: white;
-  float: left;
   padding: 20px;
 
   .articles h2.header {

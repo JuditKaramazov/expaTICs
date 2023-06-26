@@ -3,16 +3,13 @@ import styled from "styled-components";
 export const Section = styled.section`
   width: 100vw;
   height: 25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
   border-top: 2px solid ${(props) => props.theme.text};
   border-top: 2px solid ${(props) => props.theme.text};
-
   background-color: ${(props) => `rgba(${props.theme.textRgba}, 0.9)`};
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
   overflow: hidden;
 
   @media (max-width: 48em) {
@@ -23,15 +20,14 @@ export const Section = styled.section`
 
 export const ImgContainer = styled.div`
   width: 100%;
+  display: flex;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-
-  display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
   opacity: 0.2;
+  transform: translate(-50%, -50%);
 
   img {
     width: 15rem;
@@ -45,12 +41,12 @@ export const ImgContainer = styled.div`
 `;
 
 export const Title = styled.h1`
-  font-size: ${(props) => props.theme.fontxxl};
-  color: ${(props) => props.theme.body};
-  padding: 1rem 2rem;
-  z-index: 10;
   width: 45%;
+  color: ${(props) => props.theme.body};
+  font-size: ${(props) => props.theme.fontxxl};
+  padding: 1rem 2rem;
   text-shadow: 1px 1px 2px;
+  z-index: 10;
 
   em {
     color: #ff4f7e;
@@ -58,15 +54,15 @@ export const Title = styled.h1`
   }
 
   @media (max-width: 64em) {
+    width: 50%;
     font-size: ${(props) => props.theme.fontxl};
     text-align: center;
-    width: 50%;
   }
 
   @media (max-width: 48em) {
+    width: 100%;
     font-size: ${(props) => props.theme.fontxl};
     padding: 2rem 0;
-    width: 100%;
   }
 `;
 
@@ -85,15 +81,15 @@ export const JoinNow = styled.button`
   display: inline-block;
   background-color: ${(props) => props.theme.body};
   color: ${(props) => props.theme.text};
-  outline: none;
-  border: none;
   font-weight: 600;
   font-size: ${(props) => props.theme.fontlg};
   padding: 1.5rem 3rem;
+  border: none;
   border-radius: 50px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  outline: none;
   position: relative;
+  transition: all 0.2s ease;
 
   @media (max-width: 48em) {
     padding: 1rem 2rem;
@@ -111,13 +107,13 @@ export const JoinNow = styled.button`
   &::after {
     content: " ";
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    border: 2px solid ${(props) => props.theme.body};
     width: 100%;
     height: 100%;
+    top: 50%;
+    left: 50%;
+    border: 2px solid ${(props) => props.theme.body};
     border-radius: 50px;
+    transform: translate(-50%, -50%) scale(0);
     transition: all 0.2s ease;
   }
 

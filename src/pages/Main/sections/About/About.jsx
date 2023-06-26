@@ -44,8 +44,9 @@ const About = () => {
           <SubTextLight>{subTextsLight[activeIndex]}</ SubTextLight>
           <ButtonContainer>
             <ThemeProvider theme={dark}>
-                <Link to="goal" smooth={true} duration={500}>
-                <Button text="Sounds familiar?" /></ Link>
+              <Link to="goal" smooth={true} duration={500}>
+                <Button text="Sounds familiar?" />
+              </ Link>
             </ ThemeProvider>
             </ ButtonContainer>
         </ Box>

@@ -35,8 +35,8 @@ export const Box = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 `;
 
 export const RegistrationImageContainer = styled.div`
@@ -57,9 +57,9 @@ export const RegistrationImageContainer = styled.div`
 `;
 
 export const FormBody = styled.form`
+  width: 80%;
   display: flex;
   flex-direction: column;
-  width: 80%;
   align-items: center;
   color: ${(props) => props.theme.body};
   background-color: #202020;
@@ -122,27 +122,27 @@ export const FormBody = styled.form`
 
 export const RegisterButton = styled.button`
   display: inline-block;
+  position: relative;
   margin-top: -10px;
   margin-bottom: 10px;
   background-color: ${(props) => props.theme.body};
   color: ${(props) => props.theme.text};
-  outline: none;
-  border: none;
-  font-weight: 100;
   font-size: ${(props) => props.theme.fontlg};
-  padding: 0.8rem 3rem;
+  font-weight: 100;
+  border: none;
   border-radius: 50px;
   cursor: pointer;
+  outline: none;
+  padding: 0.8rem 3rem;
   transition: all 0.2s ease;
-  position: relative;
 
   @media (max-width: 48em) {
     padding: 0.6rem 2rem;
   }
 
   @media (max-width: 30em) {
-    padding: 0.4rem 2rem;
     font-size: ${(props) => props.theme.fontsm};
+    padding: 0.4rem 2rem;
   }
 
   &:hover {
@@ -151,14 +151,14 @@ export const RegisterButton = styled.button`
 
   &::after {
     content: " ";
+    width: 100%;
+    height: 100%;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(0);
     border: 2px solid #29abe1;
-    width: 100%;
-    height: 100%;
     border-radius: 50px;
+    transform: translate(-50%, -50%) scale(0);
     transition: all 0.2s ease;
   }
 

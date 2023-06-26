@@ -38,10 +38,10 @@ export const Introduction = styled.div`
   padding: 1rem;
 
   h2 {
+    position: relative;
     display: inline-block;
     margin-left: 6px;
     margin-bottom: 4px;
-    position: relative;
   }
 
   h2::after {
@@ -113,16 +113,16 @@ export const FormContainer = styled.div`
   }
 
   .AddIdeaForm input[type='submit'] {
+    width: 5rem;
+    display: flex;
+    margin: 0;
+    align-items: center;
+    justify-content: center;
     background: transparent;
     border: 2px solid pink;
     padding-left: 2rem;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 5rem;
     padding: 0;
-    margin: 0;
   }
 
   .ideas {

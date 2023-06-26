@@ -20,8 +20,8 @@ export const Container = styled.div`
   }
   
   @media (max-width: 48em) {
-    flex-direction: column-reverse;
     width: 100%;
+    flex-direction: column-reverse;
 
     &>*: first-child {
       width: 100%;
@@ -35,6 +35,6 @@ export const Box = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 `;

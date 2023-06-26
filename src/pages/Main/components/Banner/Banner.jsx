@@ -19,7 +19,7 @@ const Banner = () => {
       </ Title>
       <BtnContainer>
         <Link to="/login/">
-            <JoinNow>Start the change</ JoinNow>
+          <JoinNow>Start the change</ JoinNow>
         </ Link>
       </ BtnContainer>
     </ Section>

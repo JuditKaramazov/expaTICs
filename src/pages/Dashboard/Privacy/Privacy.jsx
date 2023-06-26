@@ -46,9 +46,9 @@ const Privacy = () => {
           title="Repeat: I matter."
           subtext="And that's why we'll treat your data with the same care we all should treat ourselves. Stay safe, please - and treat yourself kindly."
           />
-        </Items>
-      </Container>
-    </Section>
+        </ Items>
+      </ Container>
+    </ Section>
   )
 }
 

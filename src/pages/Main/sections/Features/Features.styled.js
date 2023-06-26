@@ -8,9 +8,9 @@ export const Section = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  color: ${(props) => props.theme.body};
   background-color: ${(props) => props.theme.text};
   position: relative;
-  color: ${(props) => props.theme.body};
 `;
 
 export const Title = styled.h1`

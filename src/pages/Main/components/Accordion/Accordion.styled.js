@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  cursor: pointer;
-  padding: 1rem 0.5rem;
   display: flex;
   flex-direction: column;
-  border-bottom: 1px solid ${(props) => props.theme.carouselColor};
   margin: 3rem 0;
+  border-bottom: 1px solid ${(props) => props.theme.carouselColor};
+  cursor: pointer;
+  padding: 1rem 0.5rem;
 
   @media (max-width: 48em) {
     margin: 2rem 0;
@@ -14,10 +14,10 @@ export const Container = styled.div`
 `;
 
 export const Title = styled.div`
-  font-size: ${(props) => props.theme.fontsm};
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
+  font-size: ${(props) => props.theme.fontsm};
 `;
 
 export const Name = styled.div`
@@ -26,11 +26,10 @@ export const Name = styled.div`
 `;
 
 export const Indicator = styled.span`
-  font-size: ${(props) => props.theme.fontxxl};
-
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  font-size: ${(props) => props.theme.fontxxl};
 
   svg {
     width: 1rem;

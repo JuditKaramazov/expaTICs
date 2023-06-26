@@ -4,7 +4,7 @@ import { GoalImageContainer } from "./GoalImage.styled";
 const GoalImage = () => {
   return (
     <GoalImageContainer>
-      <img src="/expaticsGoal.png" alt='Usual intercultural problems chart.'/>
+      <img src="/expaticsGoal.png" alt="Usual multicultural challenges chart."/>
     </ GoalImageContainer>
   );
 };

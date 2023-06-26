@@ -51,7 +51,7 @@ export default function Support() {
         {messages.map((message) => (
           <MessageBox key={message.id} isUser={message.role === "user"}>
             {message.content}
-          </MessageBox>
+          </ MessageBox>
         ))}
         <form onSubmit={handleSubmit}>
           <input

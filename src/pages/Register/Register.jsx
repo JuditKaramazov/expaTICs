@@ -61,7 +61,6 @@ const Register = () => {
             <RegistrationImageContainer>
               <img src="/connectRegister.png" alt="Colorful jigsaw visual." />
             </ RegistrationImageContainer>
-  
             <FormBody onSubmit={handleSubmit}>
               <div className="form-header">
                 <div className="form-title">
@@ -91,7 +90,6 @@ const Register = () => {
                     required
                   />
                 </div>
-  
                 <div>
                   <input
                     type="password"

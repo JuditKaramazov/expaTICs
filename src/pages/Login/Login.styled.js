@@ -57,9 +57,9 @@ export const RegistrationImageContainer = styled.div`
 `;
 
 export const FormBody = styled.form`
+  width: 80%;
   display: flex;
   flex-direction: column;
-  width: 80%;
   align-items: center;
   color: ${(props) => props.theme.body};
   background-color: #202020;
@@ -138,15 +138,15 @@ export const RegisterButton = styled.button`
   margin-bottom: 10px;
   background-color: ${(props) => props.theme.body};
   color: ${(props) => props.theme.text};
-  outline: none;
-  border: none;
   font-weight: 100;
   font-size: ${(props) => props.theme.fontlg};
-  padding: 0.8rem 3rem;
+  border: none;
   border-radius: 50px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  outline: none;
+  padding: 0.8rem 3rem;
   position: relative;
+  transition: all 0.2s ease;
 
   @media (max-width: 48em) {
     padding: 0.6rem 2rem;
@@ -164,13 +164,13 @@ export const RegisterButton = styled.button`
   &::after {
     content: " ";
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    border: 2px solid #ff4f7e;
     width: 100%;
     height: 100%;
+    top: 50%;
+    left: 50%;
+    border: 2px solid #ff4f7e;
     border-radius: 50px;
+    transform: translate(-50%, -50%) scale(0);
     transition: all 0.2s ease;
   }
 

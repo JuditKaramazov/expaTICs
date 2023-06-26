@@ -92,8 +92,8 @@ const Sidebar = () => {
           </ Details>
         </ Profile>
         <Modal showModal={showModal} setShowModal={setShowModal}>
-        <AmbientSounds />
-      </ Modal>
+          <AmbientSounds />
+        </ Modal>
       </ SidebarContainer>
     </Container>
   );

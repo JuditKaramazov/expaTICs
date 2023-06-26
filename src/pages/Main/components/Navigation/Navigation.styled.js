@@ -7,12 +7,11 @@ export const Section = styled.section`
 
 export const NavBar = styled.nav`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-
   width: 85%;
   height: ${(props) => props.theme.navHeight};
   margin: 0 auto;
+  align-items: center;
+  justify-content: space-between;
 
   .mobile {
     display: none;
@@ -30,29 +29,26 @@ export const NavBar = styled.nav`
 
 export const Menu = styled.ul`
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   list-style: none;
 
   @media (max-width: 64em) {
+    width: 100vw;
+    height: ${(props) => `calc(100vh - ${props.theme.navHeight})`};
+    flex-direction: column;
     position: fixed;
     top: ${(props) => props.theme.navHeight};
     left: 0;
     right: 0;
     bottom: 0;
-    width: 100vw;
-    height: ${(props) => `calc(100vh - ${props.theme.navHeight})`};
-    z-index: 50;
+    justify-content: center;
     background-color: ${(props) => `rgba(${props.theme.bodyRgba}, 0.85)`};
     backdrop-filter: blur(2px);
-
     transform: ${(props) => props.click ? "translateY(0)" : "translateY(1000%)"};
     transition: all 0.3s ease;
-
-    flex-direction: column;
-    justify-content: center;
-
     touch-action: none;
+    z-index: 50;
   }
 `;
 
@@ -86,21 +82,18 @@ export const MenuItem = styled.li`
 export const HamburguerMenu = styled.span`
   width: ${(props) => (props.click ? "2rem" : "1.5rem")};
   height: 2px;
-  background: ${(props) => props.theme.text};
-
   position: absolute;
   top: 2rem;
   left: 50%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: ${(props) => props.theme.text};
   transform: ${(props) =>
     props.click
       ? "translateX(-50%) rotate(90deg)"
       : "translateX(-50%) rotate(0)"};
-
-  display: none;
-  justify-content: center;
-  align-items: center;
-
-  cursor: pointer;
   transition: all 0.3s ease;
 
   @media (max-width: 64em) {

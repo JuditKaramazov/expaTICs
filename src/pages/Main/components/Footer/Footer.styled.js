@@ -6,14 +6,14 @@ export const Section = styled.section`
   display: flex;
   flex-direction: column;
   background-color: ${(props) => props.theme.body};
-  position: relative;
   color: ${(props) => props.theme.text};
+  position: relative;
 `;
 
 export const Container = styled.div`
   width: 75%;
-  margin: 2rem auto;
   display: flex;
+  margin: 2rem auto;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid ${(props) => props.theme.text};
@@ -45,8 +45,8 @@ export const IconList = styled.div`
 export const Left = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 
   @media (max-width: 48em) {
     width: 100%;
@@ -54,12 +54,12 @@ export const Left = styled.div`
 `;
 
 export const MenuItems = styled.ul`
-  list-style: none;
   width: 50%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(3, 1fr);
   grid-gap: 1rem;
+  list-style: none;
 
   @media (max-width: 48em) {
     display: none;
@@ -86,18 +86,18 @@ export const Item = styled.li`
 
 export const Bottom = styled.div`
   width: 75%;
-  margin: 0 auto;
   display: flex;
-  justify-content: space-between;
+  margin: 0 auto;
   align-items: center;
+  justify-content: space-between;
 
   a {
     text-decoration: underline;
   }
 
   @media (max-width: 48em) {
-    flex-direction: column;
     width: 100%;
+    flex-direction: column;
 
     span {
       margin-bottom: 1rem;

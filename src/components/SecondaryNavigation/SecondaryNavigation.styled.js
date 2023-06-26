@@ -11,8 +11,8 @@ export const NavBar = styled.nav`
   height: ${(props) => props.theme.navHeight};
   display: flex;
   margin: 0 auto;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
 
   .mobile {
     display: none;
@@ -60,9 +60,9 @@ export const MenuItem = styled.li`
 
   &::after {
     content: " ";
-    display: block;
     width: 0%;
     height: 2px;
+    display: block;
     background: ${(props) => props.theme.text};
     transition: width 0.3s ease;
   }
@@ -89,9 +89,9 @@ export const HamburguerMenu = styled.span`
   left: 50%;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
   background: ${(props) => props.theme.text};
   transform: ${(props) => (props.click ? "translateX(-50%) rotate(90deg)" : "translateX(-50%) rotate(0)")};
-  cursor: pointer;
   transition: all 0.3s ease;
 
   @media (max-width: 64em) {
@@ -103,8 +103,8 @@ export const HamburguerMenu = styled.span`
     content: " ";
     width: ${(props) => (props.click ? "1rem" : "1.5rem")};
     height: 2px;
-    right: ${(props) => (props.click ? "-2px" : "0")};
     position: absolute;
+    right: ${(props) => (props.click ? "-2px" : "0")};
     background: ${(props) => props.theme.text};
     transition: all 0.3s ease;
   }

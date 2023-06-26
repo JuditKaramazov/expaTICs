@@ -3,19 +3,19 @@ import styled from "styled-components";
 export const Section = styled.section`
   min-height: 100vh;
   width: 100%;
-  background-color: ${(props) => props.theme.text};
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  background-color: ${(props) => props.theme.text};
   position: relative;
 `;
 
 export const Container = styled.div`
   width: 75%;
-  margin: 0 auto;
   display: flex;
-  justify-content: center;
+  margin: 0 auto;
   align-items: center;
+  justify-content: center;
 
   @media (max-width: 70em) {
     width: 80%;
@@ -43,8 +43,8 @@ export const Box = styled.div`
   min-height: 60vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 
   @media (max-width: 40em) {
     min-height: 50vh;
@@ -52,11 +52,11 @@ export const Box = styled.div`
 `;
 
 export const Title = styled.h2`
-  font-size: ${(props) => props.theme.fontxxl};
-  color: ${(props) => props.theme.body};
-  align-self: flex-start;
   width: 80%;
   margin: 0 auto;
+  color: ${(props) => props.theme.body};
+  align-self: flex-start;
+  font-size: ${(props) => props.theme.fontxxl};
 
   em {
     color: #ff4f7e;
@@ -78,17 +78,17 @@ export const Title = styled.h2`
 `;
 
 export const SubText = styled.p`
-  font-size: ${(props) => props.theme.fontlg};
-  color: ${(props) => props.theme.body};
-  align-self: flex-start;
   width: 80%;
   margin: 1rem auto;
+  align-self: flex-start;
+  color: ${(props) => props.theme.body};
+  font-size: ${(props) => props.theme.fontlg};
   font-weight: 400;
 
   @media (max-width: 64em) {
     width: 100%;
-    text-align: center;
     font-size: ${(props) => props.theme.fontmd};
+    text-align: center;
   }
 
   @media (max-width: 40em) {
@@ -101,17 +101,17 @@ export const SubText = styled.p`
 `;
 
 export const SubTextLight = styled.p`
-  font-size: ${(props) => props.theme.fontmd};
-  color: ${(props) => `rgba(${props.theme.bodyRgba}, 0.6)`};
-  align-self: flex-start;
   width: 80%;
   margin: 1rem auto;
+  color: ${(props) => `rgba(${props.theme.bodyRgba}, 0.6)`};
+  align-self: flex-start;
+  font-size: ${(props) => props.theme.fontmd};
   font-weight: 400;
 
   @media (max-width: 64em) {
     width: 100%;
-    text-align: center;
     font-size: ${(props) => props.theme.fontsm};
+    text-align: center;
   }
 
   @media (max-width: 40em) {
@@ -126,7 +126,6 @@ export const SubTextLight = styled.p`
 export const ButtonContainer = styled.div`
   width: 80%;
   display: flex;
-  align-self: flex-start;
   margin 1rem auto;
   align-self: flex-start;
 

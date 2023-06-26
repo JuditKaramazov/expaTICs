@@ -21,8 +21,8 @@ export const Container = styled.div`
   }
 
   @media (max-width: 48em) {
-    flex-direction: column-reverse;
     width: 100%;
+    flex-direction: column-reverse;
     margin-top: 1rem;
 
     &>*: first-child {
@@ -38,15 +38,15 @@ export const Box = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 `;
 
 export const Title = styled.h2`
-  font-size:  ${(props) => props.theme.fontxl};
   width: 80%;
   color: ${(props) => props.theme.text};
   align-self: flex-start;
+  font-size:  ${(props) => props.theme.fontxl};
 
   span {
     font-size: 1.5rem;

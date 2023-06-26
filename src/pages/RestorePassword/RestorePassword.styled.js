@@ -20,8 +20,8 @@ export const Container = styled.div`
   }
   
   @media (max-width: 48em) {
-    flex-direction: column-reverse;
     width: 100%;
+    flex-direction: column-reverse;
 
     &>*: first-child {
       width: 100%;
@@ -35,8 +35,8 @@ export const Box = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 `;
 
 export const RegistrationImageContainer = styled.div`
@@ -57,9 +57,9 @@ export const RegistrationImageContainer = styled.div`
 `;
 
 export const FormBody = styled.form`
+  width: 80%;
   display: flex;
   flex-direction: column;
-  width: 80%;
   align-items: center;
   color: ${(props) => props.theme.body};
   background-color: #202020;
@@ -128,19 +128,19 @@ export const FormBody = styled.form`
 
 export const RegisterButton = styled.button`
   display: inline-block;
+  position: relative;
   margin-top: 10px;
   margin-bottom: 10px;
   background-color: ${(props) => props.theme.body};
   color: ${(props) => props.theme.text};
-  outline: none;
-  border: none;
   font-weight: 100;
   font-size: ${(props) => props.theme.fontlg};
   padding: 0.8rem 3rem;
+  border: none;
   border-radius: 50px;
   cursor: pointer;
+  outline: none;
   transition: all 0.2s ease;
-  position: relative;
 
   @media (max-width: 48em) {
     padding: 0.6rem 2rem;
@@ -158,18 +158,18 @@ export const RegisterButton = styled.button`
   &::after {
     content: " ";
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    border: 2px solid orange;
     width: 100%;
     height: 100%;
+    top: 50%;
+    left: 50%;
+    border: 2px solid orange;
     border-radius: 50px;
+    transform: translate(-50%, -50%) scale(0);
     transition: all 0.2s ease;
   }
 
   &:hover::after {
-    transform: translate(-50%, -50%) scale(1);
     padding: 0.3rem;
+    transform: translate(-50%, -50%) scale(1);
   }
 `;

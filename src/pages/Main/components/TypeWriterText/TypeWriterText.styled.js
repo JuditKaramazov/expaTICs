@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const Title = styled.h2`
-  font-size:  ${(props) => props.theme.fontxxxl};
   width: 80%;
   color: ${(props) => props.theme.text};
+  font-size:  ${(props) => props.theme.fontxxxl};
   align-self: flex-start;
 
   span {

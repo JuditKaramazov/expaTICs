@@ -42,7 +42,6 @@ const RestorePassword = () => {
           <RegistrationImageContainer>
             <img src="/forgotPassword.png" alt="Colorful question marks visual." />
           </ RegistrationImageContainer>
-
           <FormBody onSubmit={handleSubmit}>
             <div className="form-header">
               <div className="form-title">

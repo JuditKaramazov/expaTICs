@@ -59,7 +59,7 @@ const Menu = () => {
               <option value="silver">Silver</option>
             </select>
             <span className="icon" onClick={() => setShowModal(true)}>
-            <MdHelpOutline />
+              <MdHelpOutline />
             </span>
           </div>
           <CalendarContainer>

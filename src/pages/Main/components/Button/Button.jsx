@@ -7,7 +7,7 @@ const Button = ({ text, link }) => {
       <a href={link} aria-label={text} target="_blank" rel="noreferrer">
         {text}
       </a>
-    </Btn>
+    </ Btn>
   );
 };
 

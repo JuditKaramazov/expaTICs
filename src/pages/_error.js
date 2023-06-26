@@ -26,7 +26,7 @@ const Container = styled.div`
     flex-direction: column-reverse;
     width: 100%;
 
-    &>*: first-child {
+    & > *:first-child {
       width: 100%;
       margin-top: 2rem;
     }
@@ -39,8 +39,8 @@ const Box = styled.div`
   min-height: 60vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 
   @media (max-width: 40em) {
     min-height: 50vh;
@@ -66,15 +66,15 @@ const ErrorLink = styled.a`
   margin-bottom: 10px;
   background-color: ${(props) => props.theme.body};
   color: ${(props) => props.theme.text};
-  outline: none;
-  border: none;
-  font-weight: 100;
   font-size: ${(props) => props.theme.fontlg};
-  padding: 0.8rem 3rem;
+  font-weight: 100;
+  border: none;
   border-radius: 50px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  padding: 0.8rem 3rem;
   position: relative;
+  outline: none;
+  transition: all 0.2s ease;
 
   @media (max-width: 48em) {
     padding: 0.6rem 2rem;
@@ -91,14 +91,14 @@ const ErrorLink = styled.a`
 
   &::after {
     content: ' ';
+    width: 100%;
+    height: 100%;
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%) scale(0);
     border: 2px solid #ff4f7e;
-    width: 100%;
-    height: 100%;
     border-radius: 50px;
+    transform: translate(-50%, -50%) scale(0);
     transition: all 0.2s ease;
   }
 
@@ -122,10 +122,10 @@ const Title = styled.h2`
 `;
 
 const SubText = styled.p`
-  font-size: 1.4rem;
-  color: ${(props) => props.theme.body};
   width: 80%;
   margin: 1rem auto;
+  color: ${(props) => props.theme.body};
+  font-size: 1.4rem;
   font-weight: 400;
   line-height: 1.5;
   letter-spacing: 0.1em;
@@ -133,8 +133,8 @@ const SubText = styled.p`
 
   @media (max-width: 64em) {
     width: 100%;
-    text-align: center;
     font-size: ${(props) => props.theme.fontlg};
+    text-align: center;
   }
 
   @media (max-width: 40em) {
@@ -149,31 +149,31 @@ const SubText = styled.p`
 const ErrorPage = ({ statusCode }) => {
   return (
     <Section id="error">
-    <Container>
-      <Box>
-        <ErrorImageContainer>
-          <img src="/errorPage.png" alt="Doubtful young man." />
-        </ ErrorImageContainer>
-      </ Box>
-      <Box>
-        <Title>
-          Well, that's embarrassing
-          <br />
-          ...
-        </ Title>
-        <SubText>
-          It seems there's a {statusCode} logistic problem somewhere!
-        </ SubText>
-        <Link href="/" style={{ decoration: "none", color: "black"} }>
+      <Container>
+        <Box>
+          <ErrorImageContainer>
+            <img src="/errorPage.png" alt="Doubtful young man." />
+          </ErrorImageContainer>
+        </ Box>
+        <Box>
+          <Title>
+            Well, that's embarrassing
+            <br />
+            ...
+          </ Title>
+          <SubText>
+            It seems there's a {statusCode} logistic problem somewhere!
+          </ SubText>
+          <Link href="/" style={{ textDecoration: "none", color: "black" }}>
             <ErrorLink>
               Go back
             </ ErrorLink>
           </ Link>
-      </ Box>
-    </ Container>
-  </ Section>
-);
-  };
+        </ Box>
+      </ Container>
+    </ Section>
+  );
+};
 
 ErrorPage.propTypes = {
   statusCode: PropTypes.number,

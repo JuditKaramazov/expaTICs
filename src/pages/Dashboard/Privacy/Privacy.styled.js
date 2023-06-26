@@ -25,9 +25,9 @@ export const Title = styled.h1`
   width: fit-content;
   display: flex;
   margin: 0.2rem auto 2rem;
-  font-size: ${(props) => props.theme.fontxxl};
   align-items: center;
   justify-content: center;
+  font-size: ${(props) => props.theme.fontxxl};
   border-bottom: 2px solid ${(props) => props.theme.text};
 
   @media (max-width: 40em) {

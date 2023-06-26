@@ -120,9 +120,9 @@ export const Container = styled.div`
   .icon {
     width: 2.5rem;
     height: 2.5rem;
+    display: flex;
     margin-left: -3rem;
     margin-top: -2.3rem;
-    display: flex;
     align-items: center;
     justify-content: center;
     background-color: transparent;

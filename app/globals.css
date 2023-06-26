@@ -17,6 +17,11 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
+::selection {
+  color: #fff;
+  background: #dd83a2;
+}
+
 select {
   appearance: none;
   width: 14em;
