@@ -57,7 +57,7 @@ The combination of these two ideas resulted in the following utilities and featu
 - The usage of OpenAI `API`.
 - User management, implemented thanks to `Firebase` authentication system combined with `localStorage`.
 - `Private routes` granting users free access to `the site's landing page`, as well as the `login`, `sign up` and `restore password` sections of it, but preventing them from accessing the `Dashboard` (our application's very core) without previous registration.
-- The possibility of `editing` their own data `individually` (e.g. a `color tracker` tool that's only accessible to its owner) or `openly` (e.g. a pseudo-wiki allowing users to).
+- The possibility of `editing` their own data `individually` (e.g. a `color tracker` tool that's only accessible to its owner) or `openly` (e.g. a pseudo-wiki allowing users to collectively craft and deploy notes regarding best places, events, activities, etc.).
 - The integration of different sections focused on the users and their `psychological well-being`.
 
 <br>
