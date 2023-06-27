@@ -1,8 +1,8 @@
 'use client'
 
 import React, { useLayoutEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import gsap from "gsap/dist/gsap";
+import ScrollTrigger from "gsap/dist/ScrollTrigger";
 import Accordion from "../../components/Accordion/Accordion";
 import { Section, Title, Container, Box } from "./Features.styled";
 
