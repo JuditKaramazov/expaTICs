@@ -10,6 +10,7 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import RestorePassword from "../pages/RestorePassword/RestorePassword";
 import ErrorPage from "../pages/_error";
+import NotFoundPage from "../pages/404";
 
 // Private routes.
 import Dashboard from "../pages/Dashboard/Dashboard";
@@ -19,7 +20,8 @@ const RouterConfig = () => (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Main />} />
-        <Route path="*" element={<ErrorPage statusCode={404} />} />
+        <Route path="*" element={<ErrorPage />} />
+        <Route path="/*" element={<NotFoundPage />} />
         <Route
           path="/login/"
           element={
